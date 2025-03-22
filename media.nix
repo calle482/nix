@@ -56,8 +56,8 @@
   };
 
   services.bazarr = {
-    enable = "true";
-    openFirewall = "true";
+    enable = true;
+    openFirewall = true;
     user = "media";
     group = "media";
   };
