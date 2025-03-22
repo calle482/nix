@@ -62,5 +62,10 @@
     group = "media";
   };
 
+  services.autobrr = {
+    enable = true;
+    openFirewall;
+  };
+
 
 }
