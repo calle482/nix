@@ -14,7 +14,7 @@
       survival = {
         enable = true;
         package = pkgs.fabricServers.fabric-1_21_4;
-        dataDir = “/apps/minecraft/survival”;
+        dataDir = "/apps/minecraft/survival";
         serverProperties = {
           gamemode = "survival";
           difficulty = "normal";
