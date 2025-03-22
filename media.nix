@@ -64,7 +64,7 @@
 
   services.autobrr = {
     enable = true;
-    openFirewall;
+    openFirewall =  true;
   };
 
 
