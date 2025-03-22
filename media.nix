@@ -9,7 +9,7 @@
   users.users.media = {
     isNormalUser = true;
     description = "User for media server related applications";
-    extraGroups = [ "media"];
+    extraGroups = [ "media", "jellyfin"];
     packages = with pkgs; [];
   };
 
@@ -25,6 +25,8 @@
   services.jellyfin = {
     enable = true;
     openFirewall = true;
+    user: "media"
+    group: "media"
   };
 
 }
