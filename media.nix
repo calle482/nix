@@ -62,10 +62,10 @@
     group = "media";
   };
 
-  services.autobrr = {
-    enable = true;
-    openFirewall =  true;
-  };
+  #services.autobrr = {
+  #  enable = true;
+  #  openFirewall =  true;
+  #};
 
 
 }
