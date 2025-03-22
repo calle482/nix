@@ -1,6 +1,6 @@
 # configuration.nix. Example of all options that are explained below.
 
-{ config, lib, pkgs, … }:
+{ config, lib, pkgs, ... }:
 
 {
   imports = [ inputs.nix-minecraft.nixosModules.minecraft-servers ];
