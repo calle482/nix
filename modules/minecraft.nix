@@ -18,7 +18,7 @@
         serverProperties = {
           gamemode = "survival";
           difficulty = "normal";
-          simulation-distance = "32"
+          simulation-distance = "32";
         };
         whitelist = {/* */};
           symlinks = {
