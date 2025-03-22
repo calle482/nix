@@ -50,6 +50,17 @@
     dataDir = "/apps/sonarr/data";
   };
 
+  services.prowlarr = {
+    enable = "true";
+    openFirewall = "true";
+  };
+
+  services.bazarr = {
+    enable = "true";
+    openFirewall = "true";
+    user = "media";
+    group = "media";
+  };
 
 
 }
