@@ -30,7 +30,7 @@
     logDir = "/apps/jellyfin/logs";
     cacheDir = "/apps/jellyfin/cache";
     dataDir = "/apps/jellyfin/data";
-    config = "/apps/jellyfin/config";
+    configDir = "/apps/jellyfin/config";
   };
 
   # Radarr service
