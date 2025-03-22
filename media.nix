@@ -42,5 +42,14 @@
     dataDir = "/apps/radarr/data";
 };
 
+  services.sonarr = {
+    enable = true;
+    openFirewall = true;
+    user = "media";
+    group = "media";
+    dataDir = "/apps/sonarr/data";
+  };
+
+
 
 }
