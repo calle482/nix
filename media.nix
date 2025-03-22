@@ -51,8 +51,8 @@
   };
 
   services.prowlarr = {
-    enable = "true";
-    openFirewall = "true";
+    enable = true;
+    openFirewall = true;
   };
 
   services.bazarr = {
