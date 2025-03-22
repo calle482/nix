@@ -13,6 +13,15 @@
     packages = with pkgs; [];
   };
 
+
+  # Jellyfin packages
+  environment.systemPackages.pkgs = [
+    jellyfin
+    jellyfin-web
+    jellyfin-ffmpeg
+  ];
+
+  # Jellyfin service
   services.jellyfin = {
     enable = true;
     openFirewall = true;
