@@ -27,6 +27,20 @@
     openFirewall = true;
     user = "media";
     group = "media";
+    logDir = "/apps/jellyfin/logs";
+    cacheDir = "/apps/jellyfin/cache";
+    dataDir = "/apps/jellyfin/data";
+    config = "/apps/jellyfin/config";
   };
+
+  # Radarr service
+  services.radarr = {
+    enable = true;
+    openFirewall = true;
+    user = "media";
+    group = "media";
+    dataDir = "/apps/radarr/data";
+};
+
 
 }
