@@ -19,8 +19,6 @@
     packages = with pkgs; [];
   };
 
-
-  # Jellyfin packages
   environment.systemPackages = [
     pkgs.jellyfin
     pkgs.jellyfin-web
@@ -30,7 +28,6 @@
   ];
 
 
-  # Jellyfin service
   services.jellyfin = {
     enable = true;
     openFirewall = true;
@@ -42,7 +39,6 @@
     configDir = "/apps/jellyfin/config";
   };
 
-  # Radarr service
   services.radarr = {
     enable = true;
     openFirewall = true;
@@ -86,8 +82,10 @@
   };
 
 
+  # Set DNS server
   networking.nameservers = [ "10.128.0.1" ];
 
+  # Create network space
   systemd.services."netns@" = {
     description = "%I network namespace";
     before = [ "network.target" ];
@@ -99,6 +97,7 @@
     };
   };
 
+  # Create wg interface in wg network space
    systemd.services.wg = {
    description = "wg network interface";
    bindsTo = [ "netns@wg.service" ];
@@ -128,11 +127,7 @@
    };
   };
 
-  # binding qbittorrent to VPN network namespace
-  # systemd.services.qbittorrent.bindsTo = [ "netns@wg.service" ];
-  # systemd.services.qbittorrent.requires = [ "network-online.target" "wg.service" ];
-  # systemd.services.qbittorrent.serviceConfig.NetworkNamespacePath = [ "/var/run/netns/wg" ];
-
+  # Bind services to wireguard
   systemd.services = {
     qbittorrent = {
       bindsTo = [ "netns@wg.service" ];
@@ -156,7 +151,7 @@
     };
   };
 
-  # allowing qbittorrent & arr web access in network namespace, a socket is necesarry
+  # allowing qbittorrent & arr web access in wg namespace, a socket is necesarry
   systemd.sockets."proxy-to-qbittorrent" = {
    enable = true;
    description = "Socket for Proxy to Qbittorrent Daemon";
@@ -185,7 +180,8 @@
    wantedBy = [ "sockets.target" ];
   };
 
-  # creating proxy service on socket, which forwards the same port from the root namespace to the isolated namespace
+
+  # creating proxy service on socket, which forwards the same port from the root namespace to the wg namespace
   systemd.services."proxy-to-qbittorrent" = {
    enable = true;
    description = "Proxy to Qbittorrent Daemon in Wireguard Namespace";
