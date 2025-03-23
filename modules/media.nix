@@ -56,7 +56,7 @@
    serviceConfig = {
      Type = "oneshot";
      RemainAfterExit = true;
-     ExecStart = with pkgs; writers.writeBash "wg-up" ''
+     ExecStart = with pkgs; writers.writeBash "wg-quick up" ''
        see -e
        ${iproute2}/bin/ip link add wg0 type wireguard
        ${iproute2}/bin/ip link set wg0 netns wg
