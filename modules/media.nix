@@ -7,7 +7,6 @@ in {
     [
       ./services/qbittorrent.nix
       ./services/private-wireguard.nix
-      ../packages/netns-exec/default.nix
     ];
 
   # Create media group
