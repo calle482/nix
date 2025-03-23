@@ -6,7 +6,6 @@
       nixpkgs.url= "github:NixOS/nixpkgs/nixos-24.11";
       nix-minecraft.url = "github:Infinidoge/nix-minecraft";
       netns-exec.flake = false;
-      netns-exec.url = "github:johnae/netns-exec";
 };
 
   outputs =
