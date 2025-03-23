@@ -18,6 +18,10 @@
         [ ./configuration.nix
           ./modules/media.nix
           ./modules/minecraft.nix
+          nix-minecraft.nixosModules.minecraft-servers
+          {
+            nixpkgs.overlays = [ inputs.nix-minecraft.overlay ];
+          }
         ];
     };
   };
