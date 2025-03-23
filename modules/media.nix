@@ -189,8 +189,8 @@
   systemd.services."proxy-to-qbittorrent" = {
    enable = true;
    description = "Proxy to Qbittorrent Daemon in Wireguard Namespace";
-   requires = [ "qbittorrent.service" "proxy-to-vpn.socket" ];
-   after = [ "qbittorrent.service" ".proxy-to-vpn.socket" ];
+   requires = [ "qbittorrent.service" "proxy-to-qbittorrent.socket" ];
+   after = [ "qbittorrent.service" ".proxy-to-qbittorrent.socket" ];
    unitConfig = { JoinsNamespaceOf = "qbittorrent.service"; };
    serviceConfig = {
      User = "media";
@@ -203,8 +203,8 @@
   systemd.services."proxy-to-radarr" = {
    enable = true;
    description = "Proxy to Radarr Daemon in Wireguard Namespace";
-   requires = [ "radarr.service" "proxy-to-vpn.socket" ];
-   after = [ "radarr.service" ".proxy-to-vpn.socket" ];
+   requires = [ "radarr.service" "proxy-to-radarr.socket" ];
+   after = [ "radarr.service" ".proxy-to-radarr.socket" ];
    unitConfig = { JoinsNamespaceOf = "radarr.service"; };
    serviceConfig = {
      User = "media";
@@ -217,8 +217,8 @@
   systemd.services."proxy-to-sonarr" = {
    enable = true;
    description = "Proxy to Radarr Daemon in Wireguard Namespace";
-   requires = [ "sonarr.service" "proxy-to-vpn.socket" ];
-   after = [ "sonarr.service" ".proxy-to-vpn.socket" ];
+   requires = [ "sonarr.service" "proxy-to-sonarr.socket" ];
+   after = [ "sonarr.service" ".proxy-to-sonarr.socket" ];
    unitConfig = { JoinsNamespaceOf = "sonarr.service"; };
    serviceConfig = {
      User = "media";
@@ -231,8 +231,8 @@
   systemd.services."proxy-to-prowlarr" = {
    enable = true;
    description = "Proxy to Radarr Daemon in Wireguard Namespace";
-   requires = [ "prowlarr.service" "proxy-to-vpn.socket" ];
-   after = [ "prowlarr.service" ".proxy-to-vpn.socket" ];
+   requires = [ "prowlarr.service" "proxy-to-prowlarr.socket" ];
+   after = [ "prowlarr.service" ".proxy-to-prowlarr.socket" ];
    unitConfig = { JoinsNamespaceOf = "prowlarr.service"; };
    serviceConfig = {
      User = "media";
