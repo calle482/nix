@@ -10,8 +10,8 @@
   outputs = {
     self,
     nixpkgs,
-    inputs@[ nix-minecraft ];
     ...
+    inputs@[ nix-minecraft ];
     }:
     let
       lib = nixpkgs.lib;
