@@ -27,6 +27,7 @@
     pkgs.jellyfin-ffmpeg
     pkgs.qbittorrent-nox
     pkgs.wireguard-tools
+    pkgs.systemd-resolved
   ];
 
   systemd.services."netns@" = {
