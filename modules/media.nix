@@ -148,7 +148,7 @@ in {
 
   # binding qbittorrent to VPN network namespace
   systemd.services.qbittorrent.bindsTo = [ "netns@wg.service" ];
-  systemd.services.qbittorrent.requires = [ "network-online.target" "wg-quick@wg0.service" ];
+  systemd.services.qbittorrent.requires = [ "network-online.target" "@wg.service" ];
   systemd.services.qbittorrent.serviceConfig.NetworkNamespacePath = [ "/var/run/netns/wg" ];
 
  #  systemd.services.qbittorrent-forwarder = {
