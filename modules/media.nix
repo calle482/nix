@@ -82,6 +82,7 @@
     user = "media";
     group = "media";
     torrentingPort = 1234;
+    profileDir = "/apps/qbittorrent/profile"
   };
 
 
