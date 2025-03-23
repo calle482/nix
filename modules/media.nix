@@ -82,7 +82,7 @@
     user = "media";
     group = "media";
     torrentingPort = "1234";
-  }
+  };
 
 
 }
