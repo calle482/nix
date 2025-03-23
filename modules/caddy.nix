@@ -8,7 +8,7 @@ services.caddy = {
   configFile = ./caddyfile;
 };
 
-
+networking.firewall.allowedTCPPorts = [ 80 443 ];
 
 
 
