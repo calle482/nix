@@ -29,7 +29,6 @@ in {
     pkgs.qbittorrent-nox
     pkgs.wireguard-tools
     pkgs.socat
-    pkgs.systemd
   ];
 
 
