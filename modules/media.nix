@@ -42,6 +42,7 @@
 
   # setting up wireguard interface within network namespace
   systemd.services."wg-quick@wg0" = {
+    enable = true;
     description = "wg network interface";
     bindsTo = [ "netns@wg.service" ];
     requires = [ "network-online.target" ];
