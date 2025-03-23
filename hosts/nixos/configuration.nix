@@ -2,11 +2,6 @@
 
 {
 
-  inputs = {
-      nixpkgs.url= "github:NixOS/nixpkgs/nixos-24.11";
-      nix-minecraft.url = "github:Infinidoge/nix-minecraft";
-};
-
   imports = [
       ./hardware-configuration.nix
       ../../modules/media.nix

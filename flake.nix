@@ -4,15 +4,28 @@
 
   inputs = {
       nixpkgs.url= "github:NixOS/nixpkgs/nixos-24.11";
+      nix-minecraft.url = "github:Infinidoge/nix-minecraft";
 };
 
-outputs = { self, nixpkgs, ...}:
+  outputs =
+    inputs@{
+      self,
+      nixpkgs,
+      nix-minecraft,
+      ...
+    }:
 
   {
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        modules = [ ./hosts/nixos/configuration.nix ];
+        modules = [
+          ./hosts/nixos/configuration.nix
+          nix-minecraft.nixosModules.minecraft-servers
+          {
+            nixpkgs.overlays = [ inputs.nix-minecraft.overlay ];
+          }
+        ];
       };
     };
   };
