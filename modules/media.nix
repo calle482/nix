@@ -5,7 +5,7 @@
 
   imports =
     [
-      ./qbittorrent.nix
+      ./services/qbittorrent.nix
     ];
 
 
