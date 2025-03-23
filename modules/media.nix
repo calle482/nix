@@ -6,7 +6,6 @@ in {
   imports =
     [
       ./services/qbittorrent.nix
-      ./services/private-wireguard.nix
     ];
 
   # Create media group
