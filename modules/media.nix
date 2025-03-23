@@ -90,12 +90,8 @@ in {
 
   networking.nameservers = [ "10.128.0.1" ];
 
-  #services.resolved = {
-  #  enable = true;
-  #};
-
-  networking.firewall.allowedUDPPorts = [ 53 ];
-  networking.firewall.allowedTCPPorts = [ 53];
+ # networking.firewall.allowedUDPPorts = [ 53 ];
+ # networking.firewall.allowedTCPPorts = [ 53];
 
   systemd.services."netns@" = {
     description = "%I network namespace";
@@ -165,40 +161,4 @@ in {
      PrivateNetwork = "yes";
    };
   };
-
-
-
-  # networking.private-wireguard.enable = true;
-  # networking.private-wireguard.ips = [
-  #   "10.139.184.160/32"
-  # ];
-  # networking.private-wireguard.dns = "10.128.0.1";
-  # networking.private-wireguard.privateKeyFile = "/root/wg-private";
-  # networking.private-wireguard.peers = [
-  #   {
-  #     publicKey = "PyLCXAQT8KkM4T+dUsOQfn+Ub3pGxfGlxkIApuig+hk=";
-  #     allowedIPs = ["0.0.0.0/0" "::0/0"];
-  #     endpoint = "62.102.148.206:1637";
-  #     persistentKeepalive = 15;
-  #   }
-  # ];
-
-  # systemd.services.qbittorrent = {
-  #   bindsTo = ["wireguard-private.service"];
-  #   after = ["wireguard-private.service"];
-  #   serviceConfig = {
-  #   NetworkNamespacePath = [ "/var/run/netns/private" ];
-  #   };
-  # };
-
-  # systemd.services.qbittorrent-forwarder = {
-  #   enable = true;
-  #   after = ["qbittorrent.service"];
-  #   bindsTo = ["qbittorrent.service"];
-  #   wantedBy = ["multi-user.target"];
-  #   script = ''
-  #     ${pkgs.socat}/bin/socat tcp-listen:${toString 8080},fork,reuseaddr,ignoreeof exec:'${pkgs.iproute2}/bin/ip netns exec private ${pkgs.socat}/bin/socat STDIO "tcp-connect:127.0.0.1:${toString 8080}"',nofork
-  #   '';
-  # };
-
 }
