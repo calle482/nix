@@ -1,0 +1,21 @@
+# Wildcard certificate creation
+*.troncraft.xyz {
+  tls {
+    dns cloudflare {env.CF_API_TOKEN}
+    resolvers 1.1.1.1
+  }
+
+  # Header settings
+  header {
+    X-Content-Type-Options nosniff
+    X-Frame-Options DENY
+    X-XSS-Protection "1; mode=block"
+    Referrer-Policy "no-referrer"
+    Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+  }
+
+  @jellyfin host jellyfin.troncraft.xyz
+  handle @jellyfin {
+    reverse_proxy 127.0.0.1:8080
+  }
+}
