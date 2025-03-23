@@ -42,7 +42,7 @@
     pkgs.jellyfin-web
     pkgs.jellyfin-ffmpeg
     pkgs.qbittorrent-nox
-    pkgs.wireguard
+    pkgs.wireguard-tools
   ];
 
 
