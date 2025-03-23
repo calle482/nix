@@ -179,8 +179,8 @@ in {
    after = [ "qbittorrent.service" ".proxy-to-vpn.socket" ];
    unitConfig = { JoinsNamespaceOf = "qbittorrent.service"; };
    serviceConfig = {
-     #User = "media";
-     #Group = "media";
+     User = "media";
+     Group = "media";
      ExecStart = "${pkgs.systemd}/lib/systemd/systemd-socket-proxyd --exit-idle-time=5min 127.0.0.1:8080";
      PrivateNetwork = "yes";
    };
