@@ -129,15 +129,23 @@
   };
 
   # binding qbittorrent to VPN network namespace
-  systemd.services.qbittorrent.bindsTo = [ "netns@wg.service" ];
-  systemd.services.qbittorrent.requires = [ "network-online.target" "wg.service" ];
-  systemd.services.qbittorrent.serviceConfig.NetworkNamespacePath = [ "/var/run/netns/wg" ];
+  # systemd.services.qbittorrent.bindsTo = [ "netns@wg.service" ];
+  # systemd.services.qbittorrent.requires = [ "network-online.target" "wg.service" ];
+  # systemd.services.qbittorrent.serviceConfig.NetworkNamespacePath = [ "/var/run/netns/wg" ];
 
-  # allowing qbittorrent web access in network namespace, a socket is necesarry
+  systemd.services = {
+    qbittorrent = {
+      bindsTo = [ "netns@wg.service" ];
+      requires = [ "network-online.target" "wg.service" ];
+      NetworkNamespacePath = [ "/var/run/netns/wg" ];
+    };
+  };
+
+  # allowing qbittorrent & arr web access in network namespace, a socket is necesarry
   systemd.sockets."proxy-to-vpn" = {
    enable = true;
    description = "Socket for Proxy to Qbittorrent Daemon";
-   listenStreams = [ "8080" ];
+   listenStreams = [ "8080" "7878" "8989" "9696"];
    wantedBy = [ "sockets.target" ];
   };
 
@@ -152,7 +160,7 @@
    serviceConfig = {
      User = "media";
      Group = "media";
-     ExecStart = "${pkgs.systemd}/lib/systemd/systemd-socket-proxyd --exit-idle-time=5min 127.0.0.1:8080";
+     ExecStart = "${pkgs.systemd}/lib/systemd/systemd-socket-proxyd --exit-idle-time=5min 127.0.0.1:8080 127.0.0.1:7878 127.0.0.1:8989 127.0.0.1:9696";
      PrivateNetwork = "yes";
    };
   };
