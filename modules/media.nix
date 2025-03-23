@@ -8,22 +8,6 @@
       ./services/qbittorrent.nix
     ];
 
-
-
-
-  # creating VPN network namespace
-  systemd.services."netns@" = {
-   description = "%I network namespace";
-   before = [ "network.target" ];
-   serviceConfig = {
-     Type = "oneshot";
-     RemainAfterExit = true;
-     ExecStart = "${pkgs.iproute2}/bin/ip netns add %I";
-     ExecStop = "${pkgs.iproute2}/bin/ip netns del %I";
-   };
-  };
-
-
   # Create media group
   users.groups.media = {};
 
@@ -42,38 +26,47 @@
     pkgs.jellyfin-web
     pkgs.jellyfin-ffmpeg
     pkgs.qbittorrent-nox
-
+    pkgs.wireguard-tools
   ];
 
-
+  systemd.services."netns@" = {
+    description = "%I network namespace";
+    before = [ "network.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      ExecStart = "${pkgs.iproute2}/bin/ip netns add %I";
+      ExecStop = "${pkgs.iproute2}/bin/ip netns del %I";
+    };
+  };
 
   # setting up wireguard interface within network namespace
   systemd.services.wg = {
-   description = "wg network interface";
-   bindsTo = [ "netns@wg.service" ];
-   requires = [ "network-online.target" ];
-   after = [ "netns@wg.service" ];
-   serviceConfig = {
-     Type = "oneshot";
-     RemainAfterExit = true;
-     ExecStart = with pkgs; writers.writeBash "wg-up" ''
-       ${iproute2}/bin/ip link add wg0 type wireguard
-       ${iproute2}/bin/ip link set wg0 netns wg
-       ${iproute2}/bin/ip -n wg address add 10.139.184.160/32 dev wg0
-       ${iproute2}/bin/ip netns exec wg \
-         ${wireguard-tools}/bin/wg setconf wg0 /root/myVPNprovider.conf
-       ${iproute2}/bin/ip -n wg link set wg0 up
-       # need to set lo up as network namespace is started with lo down
-       ${iproute2}/bin/ip -n wg link set lo up
-       ${iproute2}/bin/ip -n wg route add default dev wg0
-       # ${iproute2}/bin/ip -n wg -6 route add default dev wg0
-     '';
-     ExecStop = with pkgs; writers.writeBash "wg-down" ''
-       ${iproute2}/bin/ip -n wg route del default dev wg0
-       # ${iproute2}/bin/ip -n wg -6 route del default dev wg0
-       ${iproute2}/bin/ip -n wg link del wg0
-     '';
-   };
+    description = "wg network interface";
+    bindsTo = [ "netns@wg.service" ];
+    requires = [ "network-online.target" ];
+    after = [ "netns@wg.service" ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      ExecStart = with pkgs; writers.writeBash "wg-up" ''
+        set -e
+        ${iproute2}/bin/ip link add wg0 type wireguard
+        ${iproute2}/bin/ip link set wg0 netns wg
+        ${iproute2}/bin/ip -n wg address add 10.139.184.160/32 dev wg0
+        ${iproute2}/bin/ip -n wg -6 address add fd7d:76ee:e68f:a993:e343:5067:2ee2:1a23/128 dev wg0
+        ${iproute2}/bin/ip netns exec wg \
+          ${wireguard}/bin/wg setconf wg0 /root/myVPNprovider.conf
+        ${iproute2}/bin/ip -n wg link set wg0 up
+        ${iproute2}/bin/ip -n wg route add default dev wg0
+        ${iproute2}/bin/ip -n wg -6 route add default dev wg0
+      '';
+      ExecStop = with pkgs; writers.writeBash "wg-down" ''
+        ${iproute}/bin/ip -n wg route del default dev wg0
+        ${iproute}/bin/ip -n wg -6 route del default dev wg0
+        ${iproute}/bin/ip -n wg link del wg0
+      '';
+    };
   };
 
   # binding qbittorrent to VPN network namespace
