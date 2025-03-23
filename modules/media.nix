@@ -106,7 +106,7 @@ in {
     bindsTo = ["wireguard-private.service"];
     after = ["wireguard-private.service"];
     serviceConfig = {
-      ExecStart = mkForce "/run/wrappers/bin/netns-exec private ${pkgs.qbittorrent}/bin/qbittorrent";
+    NetworkNamespacePath = [ "/var/run/netns/private" ];
     };
   };
 
@@ -116,7 +116,7 @@ in {
     bindsTo = ["qbittorrent.service"];
     wantedBy = ["multi-user.target"];
     script = ''
-      ${pkgs.socat}/bin/socat tcp-listen:8080,fork,reuseaddr,bind=127.0.0.1  exec:'/run/wrappers/bin/netns-exec private ${pkgs.socat}/bin/socat STDIO "tcp-connect:127.0.0.1:8080"',nofork
+      ${pkgs.socat}/bin/socat tcp-listen:${toString 8080},fork,reuseaddr,ignoreeof exec:'${pkgs.iproute2}/bin/ip netns exec ${private} socat STDIO "tcp-connect:127.0.0.1:${toString 8080}"',nofork
     '';
   };
 
