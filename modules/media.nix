@@ -56,15 +56,16 @@
         ${iproute2}/bin/ip -n wg address add 10.139.184.160/32 dev wg0
         ${iproute2}/bin/ip -n wg -6 address add fd7d:76ee:e68f:a993:e343:5067:2ee2:1a23/128 dev wg0
         ${iproute2}/bin/ip netns exec wg \
-          ${wireguard-tools}/bin/wg setconf wg0 /root/myVPNprovider.conf
-        ${iproute2}/bin/ip -n wg link set wg0 up
-        ${iproute2}/bin/ip -n wg route add default dev wg0
-        ${iproute2}/bin/ip -n wg -6 route add default dev wg0
+          ${wireguard-tools}/bin/wg-quick up /root/myVPNprovider.conf
+        #${iproute2}/bin/ip -n wg link set wg0 up
+        #${iproute2}/bin/ip -n wg route add default dev wg0
+        #${iproute2}/bin/ip -n wg -6 route add default dev wg0
       '';
       ExecStop = with pkgs; writers.writeBash "wg-down" ''
-        ${iproute2}/bin/ip -n wg route del default dev wg0
-        ${iproute2}/bin/ip -n wg -6 route del default dev wg0
-        ${iproute2}/bin/ip -n wg link del wg0
+        ${wireguard-tools}/bin/wg-quick down wg0
+        #${iproute2}/bin/ip -n wg route del default dev wg0
+        #${iproute2}/bin/ip -n wg -6 route del default dev wg0
+        #${iproute2}/bin/ip -n wg link del wg0
       '';
     };
   };
