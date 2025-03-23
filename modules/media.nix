@@ -175,7 +175,7 @@
    serviceConfig = {
      User = "media";
      Group = "media";
-     ExecStart = "${pkgs.systemd}/lib/systemd/systemd-socket-proxyd --exit-idle-time=5min 127.0.0.1:8080 127.0.0.1:7878 127.0.0.1:8989 127.0.0.1:9696";
+     ExecStart = "${pkgs.systemd}/lib/systemd/systemd-socket-proxyd --exit-idle-time=5min 127.0.0.1:8080";
      PrivateNetwork = "yes";
    };
   };
