@@ -89,6 +89,10 @@ in {
   };
 
 
+  services.resolved = {
+    enable = true;
+  };
+
   systemd.services."netns@" = {
     description = "%I network namespace";
     before = [ "network.target" ];
