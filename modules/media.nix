@@ -105,6 +105,9 @@
   systemd.services.qbittorrent = {
     bindsTo = ["wireguard-private.service"];
     after = ["wireguard-private.service"];
+    serviceConfig = {
+      ExecStart = mkForce "/run/wrappers/bin/netns-exec private";
+    };
   };
 
   systemd.services.qbittorrent-forwarder = {
