@@ -88,7 +88,7 @@ in {
   };
 
 
-  #networking.nameservers = [ "10.128.0.1" ];
+  networking.nameservers = [ "10.128.0.1" ];
 
   #services.resolved = {
   #  enable = true;
