@@ -114,11 +114,11 @@ in {
    serviceConfig = {
      Type = "oneshot";
      RemainAfterExit = true;
-     ExecstartPre = ''/bin/mkdir -p /etc/netns/wg'';
      ExecStart = with pkgs; writers.writeBash "wg-up" ''
        ${iproute2}/bin/ip link add wg0 type wireguard
        ${iproute2}/bin/ip link set wg0 netns wg
        ${iproute2}/bin/ip -n wg address add 10.139.184.160/32 dev wg0
+       ${pkgs.coreutils}/bin/mkdir -p /etc/netns/wg
        ${iproute2}/bin/ip netns exec wg ${bash}/bin/bash -c 'echo "nameserver 10.128.0.1" > /etc/netns/wg/resolv.conf'
        ${iproute2}/bin/ip netns exec wg \
          ${wireguard-tools}/bin/wg setconf wg0 /root/myVPNprovider.conf
