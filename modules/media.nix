@@ -7,7 +7,6 @@ in {
     [
       ./services/qbittorrent.nix
       ./services/private-wireguard.nix
-      ../packages/netns-exec/default.nix
     ];
 
   # Create media group
@@ -86,6 +85,13 @@ in {
     group = "media";
     torrentingPort = 1234;
     profileDir = "/apps/qbittorrent";
+  };
+
+  security.wrappers.netns-exec = {
+  source = "${pkgs.netns-exec}/bin/netns-exec";
+  owner = "root";
+  group = "root";
+  setuid = true;
   };
 
   networking.private-wireguard.enable = true;
