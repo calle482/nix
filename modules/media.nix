@@ -166,9 +166,9 @@
 
 
   # creating proxy service on socket, which forwards the same port from the root namespace to the isolated namespace
-  systemd.services."proxy-to-vpn" = {
+  systemd.services."proxy-to-qbittorrent" = {
    enable = true;
-   description = "Proxy to Qbittorrent Daemon in Network Namespace";
+   description = "Proxy to Qbittorrent Daemon in Wireguard Namespace";
    requires = [ "qbittorrent.service" "proxy-to-vpn.socket" ];
    after = [ "qbittorrent.service" ".proxy-to-vpn.socket" ];
    unitConfig = { JoinsNamespaceOf = "qbittorrent.service"; };
@@ -176,6 +176,48 @@
      User = "media";
      Group = "media";
      ExecStart = "${pkgs.systemd}/lib/systemd/systemd-socket-proxyd --exit-idle-time=5min 127.0.0.1:8080";
+     PrivateNetwork = "yes";
+   };
+  };
+
+  systemd.services."proxy-to-radarr" = {
+   enable = true;
+   description = "Proxy to Radarr Daemon in Wireguard Namespace";
+   requires = [ "radarr.service" "proxy-to-vpn.socket" ];
+   after = [ "radarr.service" ".proxy-to-vpn.socket" ];
+   unitConfig = { JoinsNamespaceOf = "radarr.service"; };
+   serviceConfig = {
+     User = "media";
+     Group = "media";
+     ExecStart = "${pkgs.systemd}/lib/systemd/systemd-socket-proxyd --exit-idle-time=5min 127.0.0.1:7878";
+     PrivateNetwork = "yes";
+   };
+  };
+
+  systemd.services."proxy-to-sonarr" = {
+   enable = true;
+   description = "Proxy to Radarr Daemon in Wireguard Namespace";
+   requires = [ "sonarr.service" "proxy-to-vpn.socket" ];
+   after = [ "sonarr.service" ".proxy-to-vpn.socket" ];
+   unitConfig = { JoinsNamespaceOf = "sonarr.service"; };
+   serviceConfig = {
+     User = "media";
+     Group = "media";
+     ExecStart = "${pkgs.systemd}/lib/systemd/systemd-socket-proxyd --exit-idle-time=5min 127.0.0.1:8989";
+     PrivateNetwork = "yes";
+   };
+  };
+
+  systemd.services."proxy-to-prowlarr" = {
+   enable = true;
+   description = "Proxy to Radarr Daemon in Wireguard Namespace";
+   requires = [ "prowlarr.service" "proxy-to-vpn.socket" ];
+   after = [ "prowlarr.service" ".proxy-to-vpn.socket" ];
+   unitConfig = { JoinsNamespaceOf = "prowlarr.service"; };
+   serviceConfig = {
+     User = "media";
+     Group = "media";
+     ExecStart = "${pkgs.systemd}/lib/systemd/systemd-socket-proxyd --exit-idle-time=5min 127.0.0.1:9696";
      PrivateNetwork = "yes";
    };
   };
