@@ -87,13 +87,6 @@ in {
     profileDir = "/apps/qbittorrent";
   };
 
-  security.wrappers.netns-exec = {
-  source = "${pkgs.netns-exec}/bin/netns-exec";
-  owner = "root";
-  group = "root";
-  setuid = true;
-  };
-
   networking.private-wireguard.enable = true;
   networking.private-wireguard.ips = [
     "10.139.184.160/32"
