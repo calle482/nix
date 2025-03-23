@@ -90,9 +90,6 @@ in {
 
   networking.nameservers = [ "10.128.0.1" ];
 
- # networking.firewall.allowedUDPPorts = [ 53 ];
- # networking.firewall.allowedTCPPorts = [ 53];
-
   systemd.services."netns@" = {
     description = "%I network namespace";
     before = [ "network.target" ];
