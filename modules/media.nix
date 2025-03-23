@@ -137,7 +137,7 @@
     qbittorrent = {
       bindsTo = [ "netns@wg.service" ];
       requires = [ "network-online.target" "wg.service" ];
-      NetworkNamespacePath = [ "/var/run/netns/wg" ];
+      serviceCOnfig.NetworkNamespacePath = [ "/var/run/netns/wg" ];
     };
   };
 
