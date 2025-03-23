@@ -151,40 +151,40 @@ in {
   systemd.services.qbittorrent.requires = [ "network-online.target" "wg-quick@wg0.service" ];
   systemd.services.qbittorrent.serviceConfig.NetworkNamespacePath = [ "/var/run/netns/wg" ];
 
-  systemd.services.qbittorrent-forwarder = {
-    enable = true;
-    after = ["qbittorrent.service"];
-    bindsTo = ["qbittorrent.service"];
-    wantedBy = ["multi-user.target"];
-    script = ''
-      ${pkgs.socat}/bin/socat tcp-listen:${toString 8080},fork,reuseaddr,ignoreeof exec:'${pkgs.iproute2}/bin/ip netns exec wg ${pkgs.socat}/bin/socat STDIO "tcp-connect:127.0.0.1:${toString 8080}"',nofork
-    '';
+ #  systemd.services.qbittorrent-forwarder = {
+ #    enable = true;
+ #    after = ["qbittorrent.service"];
+ #    bindsTo = ["qbittorrent.service"];
+ #    wantedBy = ["multi-user.target"];
+ #    script = ''
+ #      ${pkgs.socat}/bin/socat tcp-listen:${toString 8080},fork,reuseaddr,ignoreeof exec:'${pkgs.iproute2}/bin/ip netns exec wg ${pkgs.socat}/bin/socat STDIO "tcp-connect:127.0.0.1:${toString 8080}"',nofork
+ #    '';
+ #  };
+
+
+  # allowing qbittorrent web access in network namespace, a socket is necesarry
+  systemd.sockets."proxy-to-vpn" = {
+   enable = true;
+   description = "Socket for Proxy to Qbittorrent Daemon";
+   listenStreams = [ "8080" ];
+   wantedBy = [ "sockets.target" ];
   };
 
 
- #  # allowing qbittorrent web access in network namespace, a socket is necesarry
- #  systemd.sockets."proxy-to-vpn" = {
- #   enable = true;
- #   description = "Socket for Proxy to Qbittorrent Daemon";
- #   listenStreams = [ "8080" ];
- #   wantedBy = [ "sockets.target" ];
- #  };
-
-
- #  # creating proxy service on socket, which forwards the same port from the root namespace to the isolated namespace
- #  systemd.services."proxy-to-vpn" = {
- #   enable = true;
- #   description = "Proxy to Qbittorrent Daemon in Network Namespace";
- #   requires = [ "qbittorrent.service" "proxy-to-vpn.socket" ];
- #   after = [ "qbittorrent.service" ".proxy-to-vpn.socket" ];
- #   unitConfig = { JoinsNamespaceOf = "qbittorrent.service"; };
- #   serviceConfig = {
- #     #User = "media";
- #     #Group = "media";
- #     ExecStart = "${pkgs.systemd}/lib/systemd/systemd-socket-proxyd --exit-idle-time=5min 127.0.0.1:8080";
- #     PrivateNetwork = "yes";
- #   };
- #  };
+  # creating proxy service on socket, which forwards the same port from the root namespace to the isolated namespace
+  systemd.services."proxy-to-vpn" = {
+   enable = true;
+   description = "Proxy to Qbittorrent Daemon in Network Namespace";
+   requires = [ "qbittorrent.service" "proxy-to-vpn.socket" ];
+   after = [ "qbittorrent.service" ".proxy-to-vpn.socket" ];
+   unitConfig = { JoinsNamespaceOf = "qbittorrent.service"; };
+   serviceConfig = {
+     #User = "media";
+     #Group = "media";
+     ExecStart = "${pkgs.systemd}/lib/systemd/systemd-socket-proxyd --exit-idle-time=5min 127.0.0.1:8080";
+     PrivateNetwork = "yes";
+   };
+  };
 
 
 
