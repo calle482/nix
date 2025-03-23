@@ -124,7 +124,7 @@ in {
      '';
      ExecStop = with pkgs; writers.writeBash "wg-down" ''
        ${iproute2}/bin/ip -n wg route del default dev wg0
-       # ${iproute2}/bin/ip -n wg -6 route del default dev wg0
+       ${iproute2}/bin/ip -n wg -6 route del default dev wg0
        ${iproute2}/bin/ip -n wg link del wg0
      '';
    };
