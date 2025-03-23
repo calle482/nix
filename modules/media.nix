@@ -111,24 +111,22 @@ in {
    serviceConfig = {
      Type = "oneshot";
      RemainAfterExit = true;
-     ExecStart = with pkgs; writers.writeBash "wg-up" ''${wireguard-tools}/bin/wg-quick up wg0'';
-     ExecStop = with pkgs; writers.writeBash "wg-up" ''${wireguard-tools}/bin/wg-quick down wg0'';
-    # ExecStart = with pkgs; writers.writeBash "wg-up" ''
-    #   ${iproute2}/bin/ip link add wg0 type wireguard
-    #   ${iproute2}/bin/ip link set wg0 netns wg
-    #   ${iproute2}/bin/ip -n wg address add 10.139.184.160/32 dev wg0
-    #   ${iproute2}/bin/ip netns exec wg \
-    #     ${wireguard-tools}/bin/wg setconf wg0 /root/myVPNprovider.conf
-    #   ${iproute2}/bin/ip -n wg link set wg0 up
-    #   # need to set lo up as network namespace is started with lo down
-    #   ${iproute2}/bin/ip -n wg link set lo up
-    #   ${iproute2}/bin/ip -n wg route add default dev wg0
-    # '';
-    # ExecStop = with pkgs; writers.writeBash "wg-down" ''
-    #   ${iproute2}/bin/ip -n wg route del default dev wg0
-    #   # ${iproute2}/bin/ip -n wg -6 route del default dev wg0
-    #   ${iproute2}/bin/ip -n wg link del wg0
-    # '';
+     ExecStart = with pkgs; writers.writeBash "wg-up" ''
+       ${iproute2}/bin/ip link add wg0 type wireguard
+       ${iproute2}/bin/ip link set wg0 netns wg
+       ${iproute2}/bin/ip -n wg address add 10.139.184.160/32 dev wg0
+       ${iproute2}/bin/ip netns exec wg \
+         ${wireguard-tools}/bin/wg setconf wg0 /root/myVPNprovider.conf
+       ${iproute2}/bin/ip -n wg link set wg0 up
+       # need to set lo up as network namespace is started with lo down
+       ${iproute2}/bin/ip -n wg link set lo up
+       ${iproute2}/bin/ip -n wg route add default dev wg0
+     '';
+     ExecStop = with pkgs; writers.writeBash "wg-down" ''
+       ${iproute2}/bin/ip -n wg route del default dev wg0
+       # ${iproute2}/bin/ip -n wg -6 route del default dev wg0
+       ${iproute2}/bin/ip -n wg link del wg0
+     '';
    };
   };
 
