@@ -157,12 +157,35 @@
   };
 
   # allowing qbittorrent & arr web access in network namespace, a socket is necesarry
-  systemd.sockets."proxy-to-vpn" = {
+  systemd.sockets."proxy-to-qbittorrent" = {
    enable = true;
    description = "Socket for Proxy to Qbittorrent Daemon";
-   listenStreams = [ "8080" "7878" "8989" "9696"];
+   listenStreams = [ "8080"];
    wantedBy = [ "sockets.target" ];
   };
+
+  systemd.sockets."proxy-to-radarr" = {
+   enable = true;
+   description = "Socket for Proxy to Qbittorrent Daemon";
+   listenStreams = [ "7878" ];
+   wantedBy = [ "sockets.target" ];
+  };
+
+ systemd.sockets."proxy-to-sonarr" = {
+   enable = true;
+   description = "Socket for Proxy to Qbittorrent Daemon";
+   listenStreams = ["8989" ];
+   wantedBy = [ "sockets.target" ];
+  };
+
+ systemd.sockets."proxy-to-prowlarr" = {
+   enable = true;
+   description = "Socket for Proxy to Qbittorrent Daemon";
+   listenStreams = [ "9696" ];
+   wantedBy = [ "sockets.target" ];
+  };
+
+
 
 
   # creating proxy service on socket, which forwards the same port from the root namespace to the isolated namespace
