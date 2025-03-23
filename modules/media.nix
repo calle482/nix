@@ -118,7 +118,7 @@ in {
        ${iproute2}/bin/ip link add wg0 type wireguard
        ${iproute2}/bin/ip link set wg0 netns wg
        ${iproute2}/bin/ip -n wg address add 10.139.184.160/32 dev wg0
-       ${iproute2}/bin/ip netns exec wg resolvectl dns wg0 10.128.0.1
+       ${iproute2}/bin/ip netns exec wg bash -c 'echo "nameserver 10.128.0.1" > /etc/resolv.conf'
        ${iproute2}/bin/ip netns exec wg \
          ${wireguard-tools}/bin/wg setconf wg0 /root/myVPNprovider.conf
        ${iproute2}/bin/ip -n wg link set wg0 up
