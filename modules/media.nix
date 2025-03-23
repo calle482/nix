@@ -166,27 +166,24 @@
 
   systemd.sockets."proxy-to-radarr" = {
    enable = true;
-   description = "Socket for Proxy to Qbittorrent Daemon";
+   description = "Socket for Proxy to Radarr Daemon";
    listenStreams = [ "7878" ];
    wantedBy = [ "sockets.target" ];
   };
 
  systemd.sockets."proxy-to-sonarr" = {
    enable = true;
-   description = "Socket for Proxy to Qbittorrent Daemon";
+   description = "Socket for Proxy to Sonarr Daemon";
    listenStreams = ["8989" ];
    wantedBy = [ "sockets.target" ];
   };
 
  systemd.sockets."proxy-to-prowlarr" = {
    enable = true;
-   description = "Socket for Proxy to Qbittorrent Daemon";
+   description = "Socket for Proxy to Prowlarr Daemon";
    listenStreams = [ "9696" ];
    wantedBy = [ "sockets.target" ];
   };
-
-
-
 
   # creating proxy service on socket, which forwards the same port from the root namespace to the isolated namespace
   systemd.services."proxy-to-qbittorrent" = {
