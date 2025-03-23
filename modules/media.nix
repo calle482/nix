@@ -41,7 +41,7 @@
   };
 
   # setting up wireguard interface within network namespace
-  systemd.services.wg = {
+  systemd.services.wg-quick@wg0 = {
     description = "wg network interface";
     bindsTo = [ "netns@wg.service" ];
     requires = [ "network-online.target" ];
@@ -49,13 +49,8 @@
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
-      ExecStart = with pkgs; writers.writeBash "wg-up" ''
-        ${wireguard-tools}/bin/wg-quick up /root/wg0.conf
-      '';
-      ExecStop = with pkgs; writers.writeBash "wg-down" ''
-        ${wireguard-tools}/bin/wg-quick down /root/wg0.conf
-
-      '';
+      ExecStart = ''${wireguard-tools}/bin/wg-quick up %i'';
+      ExecStop = ''${wireguard-tools}/bin/wg-quick down %i'';
     };
   };
 
