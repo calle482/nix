@@ -49,8 +49,8 @@
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
-      ExecStart = ''${wireguard-tools}/bin/wg-quick up %i'';
-      ExecStop = ''${wireguard-tools}/bin/wg-quick down %i'';
+      ExecStart = with pkgs; writers.writeBash "wg-up" ''${wireguard-tools}/bin/wg-quick up %i'';
+      ExecStop = with pkgs; writers.writeBash "wg-up" ''${wireguard-tools}/bin/wg-quick down %i'';
     };
   };
 
