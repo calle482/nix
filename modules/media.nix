@@ -7,6 +7,7 @@ in {
     [
       ./services/qbittorrent.nix
       ./services/private-wireguard.nix
+      ../packages/netns-exec/default.nix
     ];
 
   # Create media group
@@ -106,7 +107,7 @@ in {
     bindsTo = ["wireguard-private.service"];
     after = ["wireguard-private.service"];
     serviceConfig = {
-      ExecStart = mkForce "${pkgs.iproute2}/bin/netns-exec private";
+      ExecStart = mkForce "/run/wrappers/bin/netns-exec private ${pkgs.qbittorrent}/bin/qbittorrent";
     };
   };
 
@@ -116,7 +117,7 @@ in {
     bindsTo = ["qbittorrent.service"];
     wantedBy = ["multi-user.target"];
     script = ''
-      ${pkgs.socat}/bin/socat tcp-listen:8080,fork,reuseaddr,bind=127.0.0.1  exec:'${pkgs.iproute2}/bin/netns-exec private ${pkgs.socat}/bin/socat STDIO "tcp-connect:127.0.0.1:8080"',nofork
+      ${pkgs.socat}/bin/socat tcp-listen:8080,fork,reuseaddr,bind=127.0.0.1  exec:'/run/wrappers/bin/netns-exec private ${pkgs.socat}/bin/socat STDIO "tcp-connect:127.0.0.1:8080"',nofork
     '';
   };
 
