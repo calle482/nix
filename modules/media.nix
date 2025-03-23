@@ -1,6 +1,6 @@
-{ config, pkgs, lib, ... }: let
-inherit (lib) mkForce;
-in {
+{ config, pkgs, lib, ... }:
+
+{
 
 
   imports =
@@ -27,7 +27,6 @@ in {
     pkgs.jellyfin-ffmpeg
     pkgs.qbittorrent-nox
     pkgs.wireguard-tools
-    pkgs.socat
   ];
 
 
