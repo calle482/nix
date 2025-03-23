@@ -7,7 +7,7 @@
       nix-minecraft.url = "github:Infinidoge/nix-minecraft";
 };
 
-  outputs = { self, nixpkgs, nix-minecraft, ... }:
+  outputs = { self, nixpkgs, nix-minecraft, inputs, ... }:
     let
       lib = nixpkgs.lib;
     in {
