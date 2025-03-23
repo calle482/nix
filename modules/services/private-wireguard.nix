@@ -38,6 +38,9 @@ in {
     ips = mkOption {
       type = types.listOf types.str;
     };
+    dns = mkOption {
+      type = types.listOf types.str;
+    };
   };
 
   config = mkIf cfg.enable {

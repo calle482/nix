@@ -29,6 +29,7 @@ in {
     pkgs.qbittorrent-nox
     pkgs.wireguard-tools
     pkgs.socat
+    pkgs.systemd
   ];
 
 
@@ -90,8 +91,8 @@ in {
   networking.private-wireguard.enable = true;
   networking.private-wireguard.ips = [
     "10.139.184.160/32"
-    "fd7d:76ee:e68f:a993:e343:5067:2ee2:1a23/128"
   ];
+  networking.private-wireguard.dns = "10.128.0.1";
   networking.private-wireguard.privateKeyFile = "/root/wg-private";
   networking.private-wireguard.peers = [
     {
