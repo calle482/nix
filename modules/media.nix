@@ -139,6 +139,21 @@
       requires = [ "network-online.target" "wg.service" ];
       serviceConfig.NetworkNamespacePath = [ "/var/run/netns/wg" ];
     };
+    radarr = {
+      bindsTo = [ "netns@wg.service" ];
+      requires = [ "network-online.target" "wg.service" ];
+      serviceConfig.NetworkNamespacePath = [ "/var/run/netns/wg" ];
+    };
+    sonarr = {
+      bindsTo = [ "netns@wg.service" ];
+      requires = [ "network-online.target" "wg.service" ];
+      serviceConfig.NetworkNamespacePath = [ "/var/run/netns/wg" ];
+    };
+    prowlarr = {
+      bindsTo = [ "netns@wg.service" ];
+      requires = [ "network-online.target" "wg.service" ];
+      serviceConfig.NetworkNamespacePath = [ "/var/run/netns/wg" ];
+    };
   };
 
   # allowing qbittorrent & arr web access in network namespace, a socket is necesarry
