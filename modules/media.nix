@@ -2,6 +2,14 @@
 
 {
 
+
+  imports =
+    [
+      ./qbittorrent.nix
+    ];
+
+
+
   # Create media group
   users.groups.media = {};
 
@@ -67,6 +75,14 @@
   #  enable = true;
   #  openFirewall =  true;
   #};
+
+  services.qbittorrent = {
+    enable = true;
+    openFirewall = true;
+    user = "media";
+    group = "media";
+    torrentingPort = "1234";
+  }
 
 
 }
