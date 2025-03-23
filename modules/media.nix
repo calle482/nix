@@ -103,21 +103,6 @@ in {
     };
   };
 
- #  # setting up wireguard interface within network namespace
- #  systemd.services."wg-quick@wg0" = {
- #    enable = true;
- #    description = "wg network interface";
- #    bindsTo = [ "netns@wg.service" ];
- #    requires = [ "network-online.target" ];
- #    after = [ "netns@wg.service" ];
- #    serviceConfig = {
- #      Type = "oneshot";
- #      RemainAfterExit = true;
- #      ExecStart = with pkgs; writers.writeBash "wg-up" ''${wireguard-tools}/bin/wg-quick up wg0'';
- #      ExecStop = with pkgs; writers.writeBash "wg-up" ''${wireguard-tools}/bin/wg-quick down wg0'';
- #    };
- #  };
-
    systemd.services.wg = {
    description = "wg network interface";
    bindsTo = [ "netns@wg.service" ];
@@ -150,17 +135,6 @@ in {
   systemd.services.qbittorrent.bindsTo = [ "netns@wg.service" ];
   systemd.services.qbittorrent.requires = [ "network-online.target" "wg.service" ];
   systemd.services.qbittorrent.serviceConfig.NetworkNamespacePath = [ "/var/run/netns/wg" ];
-
- #  systemd.services.qbittorrent-forwarder = {
- #    enable = true;
- #    after = ["qbittorrent.service"];
- #    bindsTo = ["qbittorrent.service"];
- #    wantedBy = ["multi-user.target"];
- #    script = ''
- #      ${pkgs.socat}/bin/socat tcp-listen:${toString 8080},fork,reuseaddr,ignoreeof exec:'${pkgs.iproute2}/bin/ip netns exec wg ${pkgs.socat}/bin/socat STDIO "tcp-connect:127.0.0.1:${toString 8080}"',nofork
- #    '';
- #  };
-
 
   # allowing qbittorrent web access in network namespace, a socket is necesarry
   systemd.sockets."proxy-to-vpn" = {
