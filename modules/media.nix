@@ -114,6 +114,7 @@ in {
    serviceConfig = {
      Type = "oneshot";
      RemainAfterExit = true;
+     ExecstartPre = /bin/mkdir -p /etc/netns/wg;
      ExecStart = with pkgs; writers.writeBash "wg-up" ''
        ${iproute2}/bin/ip link add wg0 type wireguard
        ${iproute2}/bin/ip link set wg0 netns wg
