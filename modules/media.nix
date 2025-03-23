@@ -90,9 +90,9 @@ in {
 
   networking.nameservers = [ "10.128.0.1" ];
 
-  services.resolved = {
-    enable = true;
-  };
+  #services.resolved = {
+  #  enable = true;
+  #};
 
   networking.firewall.allowedUDPPorts = [ 53 ];
   networking.firewall.allowedTCPPorts = [ 53];
