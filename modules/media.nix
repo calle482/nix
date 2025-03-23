@@ -19,6 +19,7 @@
     pkgs.jellyfin
     pkgs.jellyfin-web
     pkgs.jellyfin-ffmpeg
+    qbittorrent-nox
   ];
 
   # Jellyfin service
