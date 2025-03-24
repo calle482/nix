@@ -1,5 +1,3 @@
-# Adds the Cloudflare DNS validation module
-
 inputs: _final: prev:
 
 let
