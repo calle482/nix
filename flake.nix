@@ -32,7 +32,7 @@
         ];
         specialArgs = {
           inherit pkgs-unstable;
-        }
+        };
       };
     };
   };
