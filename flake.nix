@@ -16,11 +16,6 @@
     }:
 
   {
-
-    overlays = [
-      (import ./overlays/caddy.nix inputs)
-    ];
-
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
