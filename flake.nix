@@ -13,6 +13,7 @@
       self,
       nixpkgs,
       nix-minecraft,
+      nixpkgs-unstable,
       ...
     }:
   let
