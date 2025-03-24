@@ -1,13 +1,9 @@
-# Adds the Cloudflare DNS validation module
-
-inputs: _final: prev:
-
-let
+self: super: let
 
   plugins = [ "github.com/caddy-dns/cloudflare" ];
   goImports =
-    prev.lib.flip prev.lib.concatMapStrings plugins (pkg: "   _ \"${pkg}\"\n");
-  goGets = prev.lib.flip prev.lib.concatMapStrings plugins
+    super.lib.flip super.lib.concatMapStrings plugins (pkg: "   _ \"${pkg}\"\n");
+  goGets = super.lib.flip super.lib.concatMapStrings plugins
     (pkg: "go get ${pkg}\n      ");
   main = ''
     package main
@@ -21,15 +17,15 @@ let
     }
   '';
 
-in {
-  caddy-cloudflare = prev.buildGo120Module {
+in rec {
+  caddy-cloudflare = super.buildGo120Module {
     pname = "caddy-cloudflare";
-    version = prev.caddy.version;
+    version = super.caddy.version;
     runVend = true;
 
     subPackages = [ "cmd/caddy" ];
 
-    src = prev.caddy.src;
+    src = super.caddy.src;
 
     vendorSha256 = "sha256:mwIsWJYKuEZpOU38qZOG1LEh4QpK4EO0/8l4UGsroU8=";
 
@@ -51,7 +47,7 @@ in {
       cp vendor/go.mod ./
     '';
 
-    meta = with prev.lib; {
+    meta = with super.lib; {
       homepage = "https://caddyserver.com";
       description =
         "Fast, cross-platform HTTP/2 web server with automatic HTTPS";
