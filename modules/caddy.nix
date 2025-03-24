@@ -2,6 +2,12 @@
 
 {
 
+  environment.systemPackages = with pkgs-unstable; [
+    caddy
+  ];
+
+
+
 services.caddy = {
   enable = true;
   package = pkgs.caddy.withPlugins {
