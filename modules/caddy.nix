@@ -2,6 +2,11 @@
 
 {
 
+nixpkgs.overlays = [
+  (import ../overlays/caddy.nix)
+];
+
+
 services.caddy = {
   enable = true;
   package = pkgs.caddy-cloudflare;
