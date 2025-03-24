@@ -6,9 +6,9 @@ nixpkgs.overlays = [
   (import ../overlays/caddy.nix)
 ];
 
-environment.systemPackages = with pkgs; [
-  caddy-cloudflare
-];
+#environment.systemPackages = with pkgs; [
+#  caddy-cloudflare
+#];
 
 
 services.caddy = {

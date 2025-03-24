@@ -6,6 +6,7 @@
       ./hardware-configuration.nix
       ../../modules/media.nix
       ../../modules/minecraft_server.nix
+      ../../modules/caddy.nix
     ];
 
   # Bootloader.
