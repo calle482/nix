@@ -18,7 +18,7 @@ self: super: let
   '';
 
 in rec {
-  caddy-cloudflare = super.buildGo120Module {
+  caddy-cloudflare = super.buildGo123Module {
     pname = "caddy-cloudflare";
     version = super.caddy.version;
     runVend = true;
