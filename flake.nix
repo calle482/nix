@@ -15,6 +15,10 @@
       ...
     }:
 
+      overlays = [
+        (import ./overlays/caddy.nix inputs)
+      ];
+
   {
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
