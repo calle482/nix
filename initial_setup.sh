@@ -3,9 +3,6 @@
 # Define the disk variable
 DISK="/dev/vda"
 
-# Load the appropriate keyboard layout
-loadkeys sv-latin1
-
 # Create GPT partition table
 parted $DISK -- mklabel gpt
 
