@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/run/current-system/sw/bin/bash
 
 # Define the disk variable
 DISK="/dev/vda"
