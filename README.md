@@ -46,6 +46,16 @@ Set needed for boot parameter on /persistent
 ## Create user entry with password
 Create an entry in configuration.nix for your user with a password set. Example can be found in hosts/nixos/configuration.nix
 
+```
+users.users.calle = {
+  isNormalUser = true;
+  description = "calle";
+  hashedPassword = "$6$zz5.EZMDjqHoXaeU$2rxBO2RzliIic7E1Rxau/3FudYlm5c1x3LId1KB29LOJZ/T6pDy6Ta.s6jZbduIOhfOu1VWR.eelDngVvSGke0";
+  extraGroups = [ "networkmanager" "wheel" ];
+  packages = with pkgs; [];
+};
+```
+
 ## Install the system
 Run the command below and set a root password
 ```
