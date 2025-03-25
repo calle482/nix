@@ -13,7 +13,7 @@ chmod +x initial_setup.sh
 ./initial_setup.sh
 ```
 
-# Create entry for impersistent root partition
+# configuration.nix modifications
 Next up you need to create your root partition entry. Example below
 
 ```
@@ -22,6 +22,20 @@ Next up you need to create your root partition entry. Example below
       fsType = "tmpfs";
       neededForBoot = true;
       options = [ "defaults" "mode=755" ];
+    };
+```
+
+Enable networkmanager
+Enable SSH
+
+Set needed for boot parameter on /persistent
+
+```
+  fileSystems."/persistent" =
+    { device = "/dev/disk/by-uuid/67326321-a8df-4cc5-860e-0ccb89014eea";
+      fsType = "btrfs";
+      neededForBoot = true;
+      options = [ "subvol=persistent" ];
     };
 ```
 
@@ -41,5 +55,12 @@ nix-shell -p git
 git clone https://github.com/calle482/nix
 mv nix .dotfiles
 cd .dotfiles
+```
+
+# Fix hardware-configuration.cfg
+Fix the UUID for the filesystems.
+
+
+```
 sudo nixos-rebuild switch --flake .
 ```
