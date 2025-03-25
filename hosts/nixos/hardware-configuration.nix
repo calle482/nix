@@ -33,7 +33,7 @@
       options = [ "subvol=nix" ];
     };
 
-  fileSystems."/home/calle" =
+  fileSystems."/home" =
     { device = "/dev/disk/by-uuid/ac8b82d3-4cb5-4fa5-b8cf-34a5d36a64a5";
       fsType = "btrfs";
       options = [ "subvol=home" ];
