@@ -25,8 +25,12 @@ Next up you need to create your root partition entry. Example below
     };
 ```
 
-Enable networkmanager
-Enable SSH
+Enable networkmanager & SSH in configuration.nix
+
+```
+networking.networkmanager.enable = true;
+services.openssh.enable = true;
+```
 
 Set needed for boot parameter on /persistent
 
