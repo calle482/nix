@@ -93,8 +93,6 @@
     files = [
       "/etc/machine-id"
       "/root/myVPNprovider.conf"
-      "/etc/shadow"
-      "/etc/passwd"
       { file = "/etc/nix/id_rsa"; parentDirectory = { mode = "u=rwx,g=,o="; }; }
     ];
   };
