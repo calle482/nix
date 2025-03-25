@@ -63,6 +63,7 @@
     wget
     git
     dig
+    htop
   ];
 
   # Enable the OpenSSH daemon.
