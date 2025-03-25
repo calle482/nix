@@ -23,6 +23,7 @@
   fileSystems."/persistent" =
     { device = "/dev/disk/by-uuid/67326321-a8df-4cc5-860e-0ccb89014eea";
       fsType = "btrfs";
+      neededForBoot = true;
       options = [ "subvol=persistent" ];
     };
 

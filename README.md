@@ -20,6 +20,7 @@ Next up you need to create your root partition entry. Example below
   fileSystems."/" =
     { device = "none";
       fsType = "tmpfs";
+      neededForBoot = true;
       options = [ "defaults" "mode=755" ];
     };
 ```
