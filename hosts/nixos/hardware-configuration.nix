@@ -20,7 +20,7 @@
       options = [ "mode=755" ];
     };
 
-  fileSystems."/nix" =
+  fileSystems."/persist" =
     { device = "/dev/disk/by-uuid/67326321-a8df-4cc5-860e-0ccb89014eea";
       fsType = "ext4";
     };
