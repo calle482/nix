@@ -34,6 +34,6 @@
 
   environment.persistence."/persistent".directories = [
     "/apps/minecraft"
-    "/etc/systemd/system/minecraft-server-survival.service"
+  #  "/etc/systemd/system/minecraft-server-survival.service"
   ];
 }
