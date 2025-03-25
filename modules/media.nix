@@ -237,4 +237,27 @@
      PrivateNetwork = "yes";
    };
   };
+
+
+  environment.persistence."/persistent".directories = [
+    "/apps/jellyfin"
+    "/apps/radarr"
+    "/apps/sonarr"
+    "/apps/qbittorrent"
+    "/etc/systemd/system/jellyfin.service"
+    "/etc/systemd/system/radarr.service"
+    "/etc/systemd/system/sonarr.service"
+    "/etc/systemd/system/prowlarr.service"
+    "/etc/systemd/system/bazarr.service"
+    "/etc/systemd/system/netns@wg.service"
+    "/etc/systemd/system/wg.service"
+    "/etc/systemd/system/proxy-to-qbittorrent.socket"
+    "/etc/systemd/system/proxy-to-radarr.socket"
+    "/etc/systemd/system/proxy-to-sonarr.socket"
+    "/etc/systemd/system/proxy-to-prowlarr.socket"
+    "/etc/systemd/system/proxy-to-qbittorrent.service"
+    "/etc/systemd/system/proxy-to-radarr.service"
+    "/etc/systemd/system/proxy-to-sonarr.service"
+    "/etc/systemd/system/proxy-to-prowlarr.service"
+  ];
 }
