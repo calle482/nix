@@ -39,3 +39,6 @@ mount -o compress=zstd,subvol=persistent ${DISK}2 /mnt/persistent
 
 # Mount the ESP partition
 mount ${DISK}1 /mnt/boot
+
+# Generate nixos config
+nixos-generate-config --root /mnt
