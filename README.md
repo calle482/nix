@@ -13,7 +13,7 @@ chmod +x initial_setup.sh
 ./initial_setup.sh
 ```
 
-# configuration.nix modifications
+## configuration.nix modifications
 Next up you need to create your root partition entry. Example below
 
 ```
