@@ -15,6 +15,7 @@
       nixpkgs,
       nix-minecraft,
       nixpkgs-unstable,
+      impermanence,
       ...
     }:
   let
