@@ -253,6 +253,7 @@ in
       "/etc/NetworkManager/system-connections"
       "/apps"
       "/persist"
+      "home/calle/.dotfiles"
       { directory = "/var/lib/colord"; user = "colord"; group = "colord"; mode = "u=rwx,g=rx,o="; }
     ];
     files = [
