@@ -98,4 +98,6 @@
     ];
   };
 
+zramSwap.enable = true
+
 }
