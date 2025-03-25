@@ -6,6 +6,7 @@
       nixpkgs.url= "github:NixOS/nixpkgs/nixos-24.11";
       nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
       nix-minecraft.url = "github:Infinidoge/nix-minecraft";
+      impermanence.url = "github:nix-community/impermanence";
 };
 
   outputs =
@@ -26,6 +27,7 @@
         system = "x86_64-linux";
         modules = [
           ./hosts/nixos/configuration.nix
+          impermanence.nixosModules.impermanence
           nix-minecraft.nixosModules.minecraft-servers
           {
             nixpkgs.overlays = [ inputs.nix-minecraft.overlay ];

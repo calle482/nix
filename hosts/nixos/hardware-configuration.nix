@@ -17,12 +17,25 @@
   fileSystems."/" =
     { device = "none";
       fsType = "tmpfs";
-      options = [ "mode=755" ];
+      options = [ "defaults" "mode=755" ];
     };
 
-  fileSystems."/persist" =
+  fileSystems."/persistent" =
     { device = "/dev/disk/by-uuid/67326321-a8df-4cc5-860e-0ccb89014eea";
-      fsType = "ext4";
+      fsType = "btrfs";
+      options = [ "subvol=persistent" ];
+    };
+
+  fileSystems."/nix" =
+    { device = "/dev/disk/by-uuid/67326321-a8df-4cc5-860e-0ccb89014eea";
+      fsType = "btrfs";
+      options = [ "subvol=nix" ];
+    };
+
+  fileSystems."/home/calle" =
+    { device = "/dev/disk/by-uuid/67326321-a8df-4cc5-860e-0ccb89014eea";
+      fsType = "btrfs";
+      options = [ "subvol=home" ];
     };
 
   fileSystems."/boot" =

@@ -1,7 +1,4 @@
 { config, pkgs, ... }:
-let
-  impermanence = builtins.fetchTarball "https://github.com/nix-community/impermanence/archive/master.tar.gz";
-in
 {
 
   imports = [
@@ -9,7 +6,6 @@ in
       ../../modules/media.nix
       ../../modules/minecraft_server.nix
       ../../modules/caddy.nix
-      "${impermanence}/nixos.nix"
     ];
 
   # Bootloader.
@@ -83,7 +79,7 @@ in
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Impermanence
-  environment.persistence."/nix/persist/system" = {
+  environment.persistence."/persistent" = {
     hideMounts = true;
     directories = [
       "/var/log"
@@ -92,8 +88,6 @@ in
       "/var/lib/systemd/coredump"
       "/etc/NetworkManager/system-connections"
       "/apps"
-      "/persist"
-      "/home/calle/.dotfiles"
       { directory = "/var/lib/colord"; user = "colord"; group = "colord"; mode = "u=rwx,g=rx,o="; }
     ];
     files = [
