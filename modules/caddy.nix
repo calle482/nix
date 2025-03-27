@@ -27,7 +27,7 @@ services.caddy = {
   configFile = ./caddyfile;
 };
 
-systemd.services.caddy.serviceConfig.Environment = config.sops.secrets."cloudflare/api_key".writeText;
+systemd.services.caddy.serviceConfig.EnvironmentFile = config.sops.secrets."cloudflare/api_key".path;
 systemd.services.caddy.serviceConfig.AmbientCapabilities = "CAP_NET_BIND_SERVICE";
 
 networking.firewall.allowedTCPPorts = [ 80 443 ];
