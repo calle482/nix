@@ -1,7 +1,7 @@
 keys:
   - &primary age1qf92uhsvu45cvf93k0mmaefmk95v5ev6nq46szpz27lh2x4x6qmqez5m5m
 creation_rules:
-  - path_regex: secerts/secrets.yml$
+  - path_regex: secerts/secrets.yaml$
     key_groups:
       - age:
         - *primary
