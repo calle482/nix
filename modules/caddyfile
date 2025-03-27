@@ -2,7 +2,7 @@
 jellytest.troncraft.xyz {
   tls {
     dns cloudflare {env.CF_API_TOKEN}
-    resolvers 10.128.0.1
+    resolvers 192.168.122.1
   }
 
   # Header settings
