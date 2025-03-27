@@ -105,4 +105,8 @@
 
 zramSwap.enable = true;
 
+# sops
+sops.defaultSopsFile = ../../secrets/secrets.yaml;
+sops.defaultSOpsFormat = "yaml";
+
 }
