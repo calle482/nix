@@ -4,7 +4,7 @@
 
 # Secrets
 sops.secrets."cloudflare/api_key" = {
-
+  owner = caddy;
 };
 
   environment.systemPackages = with pkgs-unstable; [
@@ -21,6 +21,9 @@ services.caddy = {
   };
   configFile = ./caddyfile;
 };
+
+systemd.services.caddy.serviceConfig.EnvironmentFile =${config.sops.secrets."cloudflare/api_token".path};
+systemd.services.caddy.serviceConfig.AmbientCapabilities = "CAP_NET_BIND_SERVICE";
 
 networking.firewall.allowedTCPPorts = [ 80 443 ];
 
