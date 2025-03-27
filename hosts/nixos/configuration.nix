@@ -64,6 +64,7 @@
     git
     dig
     htop
+    sops
   ];
 
   # Enable the OpenSSH daemon.
