@@ -4,7 +4,7 @@
 
 # Secrets
 sops.secrets."cloudflare/api_key" = {
-  owner = caddy;
+  owner = "caddy";
 };
 
   environment.systemPackages = with pkgs-unstable; [
