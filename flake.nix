@@ -7,6 +7,7 @@
       nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
       nix-minecraft.url = "github:Infinidoge/nix-minecraft";
       impermanence.url = "github:nix-community/impermanence";
+      sops-nix.url = "github:Mic92/sops-nix";
 };
 
   outputs =
@@ -16,6 +17,7 @@
       nix-minecraft,
       nixpkgs-unstable,
       impermanence,
+      sops-nix,
       ...
     }:
   let
@@ -29,6 +31,7 @@
         modules = [
           ./hosts/nixos/configuration.nix
           impermanence.nixosModules.impermanence
+          sops-nix.nixosModules.sops
           nix-minecraft.nixosModules.minecraft-servers
           {
             nixpkgs.overlays = [ inputs.nix-minecraft.overlay ];
