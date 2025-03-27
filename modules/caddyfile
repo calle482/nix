@@ -14,7 +14,7 @@ jellytest.troncraft.xyz {
     Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
   }
 
-  @jellyfin host jellyfin.troncraft.xyz
+  @jellyfin host jellytest.troncraft.xyz
   handle @jellyfin {
     reverse_proxy 127.0.0.1:8080
   }
