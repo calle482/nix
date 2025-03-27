@@ -3,16 +3,20 @@
 {
 
 # Secrets
-sops.templates."caddy.env" = {
+sops.secrets."cloudflare/api_key" = {
   owner = "caddy";
-  content = ''
-  CF_API_TOKEN=${config.sops."cloudflare/api_token"}
-'';
 };
 
   environment.systemPackages = with pkgs-unstable; [
     caddy
   ];
+
+#sops.templates."caddy.env" = {
+#  owner = "caddy";
+#  content = ''
+#  CF_API_TOKEN=${config.sops."cloudflare/api_token"}
+#'';
+#};
 
 services.caddy = {
   enable = true;
