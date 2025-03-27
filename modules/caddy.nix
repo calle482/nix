@@ -20,9 +20,6 @@ sops.secrets."cloudflare/api_key" = {
 
 services.caddy = {
   enable = true;
-  environment = {
-    CF_API_TOKEN = "test123";
-  };
   package = pkgs-unstable.caddy.withPlugins {
     plugins = [ "github.com/caddy-dns/cloudflare@v0.0.0-20240703190432-89f16b99c18e" ];
     hash = "sha256-W09nFfBKd+9QEuzV3RYLeNy2CTry1Tz3Vg1U2JPNPPc=";
@@ -30,6 +27,7 @@ services.caddy = {
   configFile = ./caddyfile;
 };
 
+systemd.caddy.services.EnvironmentFile = /run/secrets/cloudflare/api_key;
 #systemd.services.caddy.serviceConfig.EnvironmentFile = /run/secrets/cloudflare/api_key;
 systemd.services.caddy.serviceConfig.AmbientCapabilities = "CAP_NET_BIND_SERVICE";
 
