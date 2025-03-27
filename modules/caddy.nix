@@ -3,15 +3,16 @@
 {
 
 # Secrets
-sops.secrets."cloudflare/api_key" = {
+sops.templates."caddy.env" = {
   owner = "caddy";
+  content = ''
+  CF_API_TOKEN=${config.sops."cloudflare/api_token"}
+'';
 };
 
   environment.systemPackages = with pkgs-unstable; [
     caddy
   ];
-
-
 
 services.caddy = {
   enable = true;
@@ -22,7 +23,7 @@ services.caddy = {
   configFile = ./caddyfile;
 };
 
-systemd.services.caddy.serviceConfig.EnvironmentFile = ${config.sops.secrets."cloudflare/api_token"};
+systemd.services.caddy.serviceConfig.EnvironmentFile = /run/secrets/caddy.env;
 systemd.services.caddy.serviceConfig.AmbientCapabilities = "CAP_NET_BIND_SERVICE";
 
 networking.firewall.allowedTCPPorts = [ 80 443 ];
