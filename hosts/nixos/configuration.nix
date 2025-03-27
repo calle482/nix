@@ -107,6 +107,7 @@ zramSwap.enable = true;
 
 # sops
 sops.defaultSopsFile = ../../secrets/secrets.yaml;
-sops.defaultSOpsFormat = "yaml";
+sops.defaultSopsFormat = "yaml";
+sops.age.keyFile = "/home/calle/.config/sops/age/keys.txt";
 
 }
