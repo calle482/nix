@@ -27,7 +27,7 @@ services.caddy = {
   configFile = ./caddyfile;
 };
 
-systemd.caddy.services.EnvironmentFile = /run/secrets/cloudflare/api_key;
+systemd.services.caddy.EnvironmentFile = /run/secrets/cloudflare/api_key;
 #systemd.services.caddy.serviceConfig.EnvironmentFile = /run/secrets/cloudflare/api_key;
 systemd.services.caddy.serviceConfig.AmbientCapabilities = "CAP_NET_BIND_SERVICE";
 
