@@ -83,7 +83,7 @@
 
 
   # Set DNS server
-  networking.nameservers = [ "10.128.0.1" ];
+  #networking.nameservers = [ "10.128.0.1" ];
 
   # Create network space
   systemd.services."netns@" = {
