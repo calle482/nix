@@ -29,15 +29,15 @@ services.caddy = {
 
 systemd.services.caddy = {
   serviceConfig = {
-    PrivateTmp="yes";
+    PrivateTmp=true;
     NoNewPrivileges=true;
     ProtectSystem="strict";
     CapabilityBoundingSet="CAP_NET_BIND_SERVICE CAP_DAC_READ_SEARCH";
     RestrictNamespaces="uts ipc pid user cgroup";
-    ProtectKernelTunables="yes";
-    ProtectKernelModules="yes";
-    ProtectControlGroups="yes";
-    PrivateDevices="yes";
+    ProtectKernelTunables=true;
+    ProtectKernelModules=true;
+    ProtectControlGroups=true;
+    PrivateDevices=true;
     RestrictSUIDSGID=true;
     EnvironmentFile = config.sops.secrets."cloudflare/api_key".path;
   };
