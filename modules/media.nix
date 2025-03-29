@@ -265,7 +265,7 @@
     PrivateUsers = true;
     ProtectHome = true;
     #SystemCallFilter = [ "~@clock" "~@cpu-emulation" "~@debug" "~@module" "~@mount" "~@obsolete" "~@privileged" "~@raw-io" "~@reboot" "~@resources" "~@swap"];
-    SystemCallFilter = [ "~@clock" "~@cpu-emulation" "~@debug" ];
+    SystemCallFilter = [ "~@clock" "~@cpu-emulation" "~@debug" "~@mount" "~@obsolete"];
     ReadWritePaths = ["/apps/radarr"];
     ProtectKernelLogs = true;
     RestrictRealtime = true;
