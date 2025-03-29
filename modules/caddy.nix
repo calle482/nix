@@ -33,7 +33,9 @@ systemd.services.caddy = {
     NoNewPrivileges = true;
     ProtectSystem = "strict";
     CapabilityBoundingSet = "CAP_NET_BIND_SERVICE CAP_DAC_READ_SEARCH";
-    RestrictNamespaces = "uts ipc pid user cgroup";
+    RestrictNamespaces = "~user ~pid ~uts ~cgroup ~ipc";
+    ProtectHostname = true;
+    LockPersonality = true;
     ProtectKernelTunables = true;
     ProtectKernelModules = true;
     ProtectControlGroups = true;
@@ -45,6 +47,7 @@ systemd.services.caddy = {
     SystemCallFilter = "~@clock ~@cpu-emulation ~@debug ~@module ~@mount ~@obsolete ~@privileged ~@raw-io ~@reboot ~@resources ~@swap";
     ProtectKernelLogs = true;
     RestrictRealtime = true;
+    SystemCallArchitectures = "native";
     EnvironmentFile = config.sops.secrets."cloudflare/api_key".path;
   };
 };
