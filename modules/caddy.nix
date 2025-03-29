@@ -52,6 +52,7 @@ systemd.services.caddy = {
     ProtectSubSet = true;
     RemoveIPC = true;
     RootDirecory = "/var/lib/caddy";
+    RootImage = "/var/lib/caddy";
     EnvironmentFile = config.sops.secrets."cloudflare/api_key".path;
   };
 };
