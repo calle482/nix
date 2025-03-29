@@ -27,7 +27,23 @@ services.caddy = {
   configFile = ./caddyfile;
 };
 
-systemd.services.caddy.serviceConfig.EnvironmentFile = config.sops.secrets."cloudflare/api_key".path;
+systemd.services.caddy = {
+  serviceConfig = {
+    PrivateTmp="yes";
+    NoNewPrivileges=true;
+    ProtectSystem="strict";
+    CapabilityBoundingSet=C"AP_NET_BIND_SERVICE CAP_DAC_READ_SEARCH";
+    RestrictNamespaces="uts ipc pid user cgroup";
+    ProtectKernelTunables="yes";
+    ProtectKernelModules="yes";
+    ProtectControlGroups="yes";
+    PrivateDevices="yes";
+    RestrictSUIDSGID=true
+    EnvironmentFile = config.sops.secrets."cloudflare/api_key".path;
+  }
+};
+
+#systemd.services.caddy.serviceConfig.EnvironmentFile = config.sops.secrets."cloudflare/api_key".path;
 #systemd.services.caddy.serviceConfig.AmbientCapabilities = "CAP_NET_BIND_SERVICE";
 
 networking.firewall.allowedTCPPorts = [ 80 443 ];
