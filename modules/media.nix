@@ -271,7 +271,7 @@
     SystemCallArchitectures = "native";
     ProtectProc = true;
     RemoveIPC = true;
-   # MemoryDenyWriteExecute = true;
+    MemoryDenyWriteExecute = true;
   };
 };
 
