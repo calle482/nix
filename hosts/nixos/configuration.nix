@@ -65,6 +65,7 @@
     dig
     htop
     sops
+    lynis
   ];
 
   # Enable the OpenSSH daemon.
