@@ -89,7 +89,7 @@
       "/var/lib/nixos"
       "/var/lib/systemd/coredump"
       "/etc/NetworkManager/system-connections"
-      "/apps"
+      "/run/secrets"
       { directory = "/var/lib/colord"; user = "colord"; group = "colord"; mode = "u=rwx,g=rx,o="; }
     ];
     files = [
