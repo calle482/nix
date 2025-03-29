@@ -49,7 +49,6 @@ systemd.services.caddy = {
     RestrictRealtime = true;
     SystemCallArchitectures = "native";
     ProtectProc = true;
-    ProtectSubSet = true;
     RemoveIPC = true;
     MemoryDenyWriteExecute = true;
     ReadOnlyPaths = config.sops.secrets."cloudflare/api_key".path;
