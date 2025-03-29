@@ -51,6 +51,7 @@ systemd.services.caddy = {
     ProtectProc = true;
     ProtectSubSet = true;
     RemoveIPC = true;
+    emoryDenyWriteExecute = true;
     EnvironmentFile = config.sops.secrets."cloudflare/api_key".path;
   };
 };
