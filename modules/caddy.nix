@@ -51,6 +51,7 @@ systemd.services.caddy = {
     ProtectProc = true;
     ProtectSubSet = true;
     RemoveIPC = true;
+    CapabilityBoundingSet= ["~CAP_DAC_OVERRIDE" "~CAP_DAC_READ_SEARCH" "~CAP_FOWNER" "~CAP_IPC_OWNER"];
     EnvironmentFile = config.sops.secrets."cloudflare/api_key".path;
   };
 };
