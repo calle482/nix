@@ -251,7 +251,7 @@
   serviceConfig = {
     PrivateTmp = true;
     NoNewPrivileges = true;
-    ProtectSystem = "strict";
+    #ProtectSystem = "strict";
     #CapabilityBoundingSet = [];
     RestrictNamespaces = ["~user" "~pid" "~uts" "~cgroup" "~ipc"];
     ProtectHostname = true;
