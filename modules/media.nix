@@ -267,7 +267,7 @@
     #SystemCallFilter = [ "~@clock" "~@cpu-emulation" "~@debug" "~@module" "~@mount" "~@obsolete" "~@privileged" "~@raw-io" "~@reboot" "~@resources" "~@swap"];
     ReadWritePaths = ["/apps/radarr"];
     ProtectKernelLogs = true;
-   # RestrictRealtime = true;
+    RestrictRealtime = true;
    # SystemCallArchitectures = "native";
    # ProtectProc = true;
    # RemoveIPC = true;
