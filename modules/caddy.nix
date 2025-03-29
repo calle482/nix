@@ -29,21 +29,22 @@ services.caddy = {
 
 systemd.services.caddy = {
   serviceConfig = {
-    PrivateTmp=true;
-    NoNewPrivileges=true;
-    ProtectSystem="strict";
-    CapabilityBoundingSet="CAP_NET_BIND_SERVICE CAP_DAC_READ_SEARCH";
-    RestrictNamespaces="uts ipc pid user cgroup";
-    ProtectKernelTunables=true;
-    ProtectKernelModules=true;
-    ProtectControlGroups=true;
-    PrivateDevices=true;
-    RestrictSUIDSGID=true;
-    ProtectClock=true;
+    PrivateTmp = true;
+    NoNewPrivileges = true;
+    ProtectSystem = "strict";
+    CapabilityBoundingSet = "CAP_NET_BIND_SERVICE CAP_DAC_READ_SEARCH";
+    RestrictNamespaces = "uts ipc pid user cgroup";
+    ProtectKernelTunables = true;
+    ProtectKernelModules = true;
+    ProtectControlGroups = true;
+    PrivateDevices = true;
+    RestrictSUIDSGID = true;
+    ProtectClock = true;
     #PrivateUsers = true;
     ProtectHome = true;
     SystemCallFilter = "~@clock ~@cpu-emulation ~@debug ~@module ~@mount ~@obsolete ~@privileged ~@raw-io ~@reboot ~@resources ~@swap";
     ProtectKernelLogs = true;
+    RestrictRealtime = true;
     EnvironmentFile = config.sops.secrets."cloudflare/api_key".path;
   };
 };
