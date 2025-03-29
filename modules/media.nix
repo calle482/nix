@@ -276,4 +276,32 @@
   };
 };
 
+
+  systemd.services.sonarr = {
+  serviceConfig = {
+    PrivateTmp = true;
+    NoNewPrivileges = true;
+    ProtectSystem = "strict";
+    RestrictNamespaces = ["~user" "~pid" "~uts" "~cgroup" "~ipc" "~net" "~mnt"];
+    ProtectHostname = true;
+    LockPersonality = true;
+    ProtectKernelTunables = true;
+    ProtectKernelModules = true;
+    ProtectControlGroups = true;
+    PrivateDevices = true;
+    RestrictSUIDSGID = true;
+    PrivateUsers = true;
+    ProtectHome = true;
+    SystemCallFilter = [ "~@clock" "~@cpu-emulation" "~@debug" "~@mount" "~@obsolete" "~@obsolete" "~@privileged" "~@raw-io" "~@reboot" "~@swap"];
+    ReadWritePaths = ["/apps/radarr"];
+    ProtectKernelLogs = true;
+    RestrictRealtime = true;
+    SystemCallArchitectures = "native";
+    ProtectProc = true;
+    RemoveIPC = true;
+    CapabilityBoundingSet=["CAP_SYS_PACCT" "~CAP_KILL" "~CAP_WAKE_ALARM" "~CAP_LINUX_IMMUTABLE" "~CAP_IPC_LOCK" "~CAP_BPF" "~CAP_SYS_TTY_CONFIG" "~CAP_SYS_BOOT" "~CAP_SYS_CHROOT"];
+    RestrictAddressFamilies = "[ ]"
+  };
+};
+
 }
