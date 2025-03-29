@@ -293,7 +293,7 @@
     PrivateUsers = true;
     ProtectHome = true;
     SystemCallFilter = [ "~@clock" "~@cpu-emulation" "~@debug" "~@mount" "~@obsolete" "~@obsolete" "~@privileged" "~@raw-io" "~@reboot" "~@swap"];
-    ReadWritePaths = ["/apps/radarr"];
+    ReadWritePaths = ["/apps/sonarr"];
     ProtectKernelLogs = true;
     RestrictRealtime = true;
     SystemCallArchitectures = "native";
