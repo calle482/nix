@@ -48,6 +48,8 @@ systemd.services.caddy = {
     ProtectKernelLogs = true;
     RestrictRealtime = true;
     SystemCallArchitectures = "native";
+    ProtectProc = true;
+    ProtectSubSet = true;
     EnvironmentFile = config.sops.secrets."cloudflare/api_key".path;
   };
 };
