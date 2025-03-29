@@ -261,10 +261,10 @@
     ProtectControlGroups = true;
     PrivateDevices = true;
     RestrictSUIDSGID = true;
-    ProtectClock = true;
-    PrivateUsers = true;
-    ProtectHome = true;
-    SystemCallFilter = [ "~@clock" "~@cpu-emulation" "~@debug" "~@module" "~@mount" "~@obsolete" "~@privileged" "~@raw-io" "~@reboot" "~@resources" "~@swap"];
+    #ProtectClock = true;
+    #PrivateUsers = true;
+    #ProtectHome = true;
+    #SystemCallFilter = [ "~@clock" "~@cpu-emulation" "~@debug" "~@module" "~@mount" "~@obsolete" "~@privileged" "~@raw-io" "~@reboot" "~@resources" "~@swap"];
     #ProtectKernelLogs = true;
     #RestrictRealtime = true;
     #SystemCallArchitectures = "native";
