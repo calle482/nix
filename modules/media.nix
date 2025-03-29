@@ -252,7 +252,6 @@
     PrivateTmp = true;
     NoNewPrivileges = true;
     ProtectSystem = "strict";
-    CapabilityBoundingSet = [];
     RestrictNamespaces = ["~user" "~pid" "~uts" "~cgroup" "~ipc"];
     ProtectHostname = true;
     LockPersonality = true;
