@@ -269,7 +269,7 @@
     ProtectKernelLogs = true;
     RestrictRealtime = true;
     SystemCallArchitectures = "native";
-   # ProtectProc = true;
+    ProtectProc = true;
    # RemoveIPC = true;
    # MemoryDenyWriteExecute = true;
   };
