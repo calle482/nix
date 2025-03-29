@@ -252,7 +252,7 @@
     PrivateTmp = true;
     NoNewPrivileges = true;
     ProtectSystem = "strict";
-    RestrictNamespaces = ["~user" "~pid" "~uts" "~cgroup" "~ipc"];
+    RestrictNamespaces = ["~user" "~pid" "~uts" "~cgroup" "~ipc" "~net"];
     ProtectHostname = true;
     LockPersonality = true;
     ProtectKernelTunables = true;
