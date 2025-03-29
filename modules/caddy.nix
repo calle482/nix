@@ -42,7 +42,6 @@ systemd.services.caddy = {
     ProtectClock=true;
     PrivateUsers = true;
     ProtectHome = true;
-    NoNewPrivileges = true;
     ProtectKernelLogs = true;
     EnvironmentFile = config.sops.secrets."cloudflare/api_key".path;
   };
