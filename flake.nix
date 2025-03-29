@@ -26,7 +26,7 @@
     pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
   in {
     nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem {
+      nixlab = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           ./hosts/nixlab/configuration.nix
