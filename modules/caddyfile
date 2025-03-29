@@ -1,5 +1,5 @@
 # Wildcard certificate creation
-jellytest.troncraft.xyz {
+jellylol.troncraft.xyz {
   tls {
     dns cloudflare {env.CF_API_TOKEN}
     resolvers 1.1.1.1
@@ -14,7 +14,7 @@ jellytest.troncraft.xyz {
     Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
   }
 
-  @jellyfin host jellytest.troncraft.xyz
+  @jellyfin host jellylol.troncraft.xyz
   handle @jellyfin {
     reverse_proxy 127.0.0.1:8096
   }

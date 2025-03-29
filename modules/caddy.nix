@@ -61,6 +61,8 @@ systemd.services.caddy = {
 
 networking.firewall.allowedTCPPorts = [ 80 443 ];
 
-
+  environment.persistence."/persistent".directories = [
+    "/var/lib/caddy"
+  ];
 
 }
