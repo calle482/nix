@@ -42,6 +42,7 @@ systemd.services.caddy = {
     ProtectClock=true;
     #PrivateUsers = true;
     ProtectHome = true;
+    SystemCallFilter = "~@clock ~@cpu-emulation ~@debug ~@module ~@mount ~@obsolete ~@privileged ~@raw-io ~@reboot ~@resources ~@swap";
     ProtectKernelLogs = true;
     EnvironmentFile = config.sops.secrets."cloudflare/api_key".path;
   };
