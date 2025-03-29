@@ -268,7 +268,7 @@
     ReadWritePaths = ["/apps/radarr"];
     ProtectKernelLogs = true;
     RestrictRealtime = true;
-   # SystemCallArchitectures = "native";
+    SystemCallArchitectures = "native";
    # ProtectProc = true;
    # RemoveIPC = true;
    # MemoryDenyWriteExecute = true;
