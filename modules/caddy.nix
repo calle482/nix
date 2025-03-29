@@ -32,7 +32,6 @@ systemd.services.caddy = {
     PrivateTmp = true;
     NoNewPrivileges = true;
     ProtectSystem = "strict";
-    CapabilityBoundingSet = "CAP_NET_BIND_SERVICE CAP_DAC_READ_SEARCH";
     RestrictNamespaces = ["~user" "~pid" "~uts" "~cgroup" "~ipc"];
     ProtectHostname = true;
     LockPersonality = true;
