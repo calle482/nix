@@ -51,7 +51,6 @@ systemd.services.caddy = {
     ProtectProc = true;
     RemoveIPC = true;
     MemoryDenyWriteExecute = true;
-    PrivateUsers = true;
     ReadOnlyPaths = config.sops.secrets."cloudflare/api_key".path;
     EnvironmentFile = config.sops.secrets."cloudflare/api_key".path;
   };
