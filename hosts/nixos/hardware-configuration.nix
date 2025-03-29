@@ -36,6 +36,7 @@
   fileSystems."/home" =
     { device = "/dev/disk/by-uuid/a0c68483-4874-4afb-bf32-2b39edb9bfd7";
       fsType = "btrfs";
+      neededForBoot = true;
       options = [ "subvol=home" ];
     };
 
