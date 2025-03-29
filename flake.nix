@@ -29,7 +29,7 @@
       nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./hosts/nixos/configuration.nix
+          ./hosts/nixlab/configuration.nix
           impermanence.nixosModules.impermanence
           sops-nix.nixosModules.sops
           nix-minecraft.nixosModules.minecraft-servers
