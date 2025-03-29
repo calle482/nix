@@ -270,7 +270,7 @@
     RestrictRealtime = true;
     SystemCallArchitectures = "native";
     ProtectProc = true;
-   # RemoveIPC = true;
+    RemoveIPC = true;
    # MemoryDenyWriteExecute = true;
   };
 };
