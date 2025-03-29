@@ -40,7 +40,7 @@ systemd.services.caddy = {
     PrivateDevices="yes";
     RestrictSUIDSGID=true;
     EnvironmentFile = config.sops.secrets."cloudflare/api_key".path;
-  }
+  };
 };
 
 #systemd.services.caddy.serviceConfig.EnvironmentFile = config.sops.secrets."cloudflare/api_key".path;
