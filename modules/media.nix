@@ -300,7 +300,6 @@
     ProtectProc = true;
     RemoveIPC = true;
     CapabilityBoundingSet=["CAP_SYS_PACCT" "~CAP_KILL" "~CAP_WAKE_ALARM" "~CAP_LINUX_IMMUTABLE" "~CAP_IPC_LOCK" "~CAP_BPF" "~CAP_SYS_TTY_CONFIG" "~CAP_SYS_BOOT" "~CAP_SYS_CHROOT"];
-    RestrictAddressFamilies = "[ ]"
   };
 };
 
