@@ -32,6 +32,7 @@ systemd.services.caddy = {
     PrivateTmp = true;
     NoNewPrivileges = true;
     ProtectSystem = "strict";
+    CapabilityBoundingSet = "CAP_NET_BIND_SERVICE CAP_DAC_READ_SEARCH";
     RestrictNamespaces = ["~user" "~pid" "~uts" "~cgroup" "~ipc"];
     ProtectHostname = true;
     LockPersonality = true;
@@ -50,7 +51,6 @@ systemd.services.caddy = {
     ProtectProc = true;
     ProtectSubSet = true;
     RemoveIPC = true;
-    CapabilityBoundingSet= ["~CAP_DAC_OVERRIDE" "~CAP_DAC_READ_SEARCH" "~CAP_FOWNER" "~CAP_IPC_OWNER"];
     EnvironmentFile = config.sops.secrets."cloudflare/api_key".path;
   };
 };
