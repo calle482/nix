@@ -50,6 +50,8 @@ systemd.services.caddy = {
     SystemCallArchitectures = "native";
     ProtectProc = true;
     ProtectSubSet = true;
+    RemoveIPC = true;
+    RootDirecory = "/var/lib/caddy";
     EnvironmentFile = config.sops.secrets."cloudflare/api_key".path;
   };
 };
