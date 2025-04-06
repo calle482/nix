@@ -18,4 +18,9 @@ jellylol.troncraft.xyz {
   handle @jellyfin {
     reverse_proxy 127.0.0.1:8096
   }
+
+  log {
+      format transform "{common_log}"
+      output file /var/log/caddy/jellyfin-access.log
+  }
 }

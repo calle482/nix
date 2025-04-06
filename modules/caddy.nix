@@ -21,8 +21,8 @@ sops.secrets."cloudflare/api_key" = {
 services.caddy = {
   enable = true;
   package = pkgs-unstable.caddy.withPlugins {
-    plugins = [ "github.com/caddy-dns/cloudflare@v0.0.0-20240703190432-89f16b99c18e" "github.com/caddyserver/transform-encoder@v0.0.0-58ebafa572d531b301fdbc6e2fd139766bac7e8d" ];
-    hash = "sha256-W09nFfBKd+9QEuzV3RYLeNy2CTry1Tz3Vg1U2JPNPPc=";
+    plugins = [ "github.com/caddy-dns/cloudflare@v0.0.0-20240703190432-89f16b99c18e" "github.com/caddyserver/transform-encoder@v0.0.0-20231219065943-58ebafa572d5" ];
+    hash = ["sha256-MSkeMls5Iv+W6ROcuaPvJQZLuPChUSB9HoOy7D+21xA="];
   };
   configFile = ./caddyfile;
 };
@@ -64,5 +64,35 @@ networking.firewall.allowedTCPPorts = [ 80 443 ];
   environment.persistence."/persistent".directories = [
     "/var/lib/caddy"
   ];
+
+
+  services.fail2ban = {
+    enable = true;
+    ignoreIP = ["192.168.10.0/24"];
+    maxretry = 8;
+    bantime-increment.enable = true;
+    bantime-increment.formula = "ban.Time * math.exp(float(ban.Count+1)*banFactor)/math.exp(1*banFactor)";
+    bantime-increment.rndtime = "5m";
+    jails = {
+      jellyfin.settings = {
+        enabled = true;
+        action = ''iptables-multiport[name=HTTP, port="http,https"]'';
+        filter = "caddy-access";
+        logppath = "/var/log/caddy/jellyfin-access.log";
+        backend = "auto";
+        maxretry = 8;
+        findtime = 30;
+        bantime = 600;
+      };
+    };
+  };
+
+  environment.etc = {
+    "fail2ban/filter.d/caddy-access.conf".text = ''
+      [Definition]
+      failregex = ^<HOST>.*"(GET|POST|OPTION).*" (4[0-9][0-9])[ \d]*$
+      ignoreregex =
+    '';
+  };
 
 }
