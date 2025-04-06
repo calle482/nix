@@ -3,7 +3,7 @@ on:
   workflow_dispatch: # allows manual triggering
   pull_request: # triggers on every Pull Request
   schedule:
-    - cron: '0 0 * * 1' # runs every monday at 00:00
+    - cron: '0 22 * * 0' # runs every monday at 00:00 (runs at 22:00 sunday UTC)
 
 jobs:
   lockfile:
