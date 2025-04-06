@@ -15,6 +15,7 @@ jobs:
         uses: DeterminateSystems/nix-installer-action@v1
       - name: Update flake.lock
         uses: DeterminateSystems/update-flake-lock@v24
-      - run: "gh pr merge --auto --merge ${{ steps.update.outputs.pull-request-number }}"
+      - name: Merge PR
+        run: "gh pr merge --auto --merge ${{ steps.update.outputs.pull-request-number }}"
         env:
          GH_TOKEN: ${{ github.token }}
