@@ -111,11 +111,19 @@
     ];
   };
 
-zramSwap.enable = true;
+  zramSwap.enable = true;
 
-# sops
-sops.defaultSopsFile = ../../secrets/secrets.yaml;
-sops.defaultSopsFormat = "yaml";
-sops.age.keyFile = "/home/calle/.config/sops/age/keys.txt";
+  # sops
+  sops.defaultSopsFile = ../../secrets/secrets.yaml;
+  sops.defaultSopsFormat = "yaml";
+  sops.age.keyFile = "/home/calle/.config/sops/age/keys.txt";
+
+  # Auto upgrade
+  system.autoUpgrade = {
+    enable = true;
+    flake = "github:calle482/nix";
+    dates = "Mon *-*-* 03:00:00"; # Every monday at 03:00
+    allowReboot = true;
+  };
 
 }
