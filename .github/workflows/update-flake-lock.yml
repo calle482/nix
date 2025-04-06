@@ -14,8 +14,9 @@ jobs:
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@v1
       - name: Update flake.lock
+        id: update
         uses: DeterminateSystems/update-flake-lock@v24
       - name: Merge PR
-        run: "gh pr merge --auto --merge ${{ steps.update.outputs.pull-request-number }}"
+        run: "gh pr merge ${{ steps.update.outputs.pull-request-number }} --squash --delete-branch"
         env:
          GH_TOKEN: ${{ github.token }}
