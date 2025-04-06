@@ -16,3 +16,5 @@ jobs:
       - name: Update flake.lock
         if: ${{ github.event_name != 'pull_request' }}
         uses: DeterminateSystems/update-flake-lock@v24
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
