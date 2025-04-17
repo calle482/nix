@@ -37,12 +37,15 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.calle = import ./skit.nix;
-           # home-manager.users.calle = import ./home.nix {
-           #   lib = nixpkgs.lib;
-           #   config = {};
-           #   inherit pkgs;
-           # };
+            home-manager.sharedModules = [
+              inputs.sops-nix.homeManagerModules.sops
+            ];
+            home-manager.users.calle = {
+              imports = [
+                ./home/nixlab.nix
+                sops-nix.homeManagerModules.sops
+              ];
+            };
           }
           impermanence.nixosModules.impermanence
           sops-nix.nixosModules.sops

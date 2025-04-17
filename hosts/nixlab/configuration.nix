@@ -6,6 +6,7 @@
       ../../modules/media.nix
       ../../modules/minecraft_server.nix
       ../../modules/caddy.nix
+      #../../modules/recyclarr.nix
     ];
 
 
