@@ -349,6 +349,8 @@ sonarr:
           - 0dad0a507451acddd754fe6dc3a7f5e7 # HDR10+ Boost
           - 385e9e8581d33133c3961bdcdeffb7b4 # DV HDR10+ Boost
           - 9b64dff695c2115facf1b6ea59c9bd07 # x265 (NO HDR/DEV) - 1080p - Unwanted
+          - 43b3cf48cb385cd3eac608ee6bca7f09 # UHD Streaming Boost
+          - d2d299244a92b8a52d4921ce3897a256 # UHD Streaming Cut
         assign_scores_to:
           - name: UHD WEB
           - name: UHD Bluray + WEB
