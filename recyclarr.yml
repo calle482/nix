@@ -15,6 +15,7 @@ radarr:
           until_quality: Bluray-1080p
           until_score: 10000
         min_format_score: 0
+        quality_sort: top
         qualities:
           - name: Bluray-1080p
           - name: WEB 1080P
@@ -31,6 +32,7 @@ radarr:
           until_quality: Bluray-2160p
           until_score: 10000
         min_format_score: 0
+        quality_sort: top
         qualities:
           - name: Bluray-2160p
           - name: WEB 2160p
@@ -47,6 +49,7 @@ radarr:
           until_quality: Remux-1080p
           until_score: 10000
         min_format_score: 0
+        quality_sort: top
         qualities:
           - name: Remux-1080p
           - name: WEB 1080p
@@ -62,6 +65,7 @@ radarr:
           until_quality: Remux-2160p
           until_score: 10000
         min_format_score: 0
+        quality_sort: top
         qualities:
           - name: Remux-2160p
           - name: WEB 2160p
