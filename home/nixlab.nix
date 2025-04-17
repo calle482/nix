@@ -14,7 +14,7 @@
 
 
   # sops
-  sops.defaultSopsFile = ./secrets/secrets.yaml;
+  sops.defaultSopsFile = ../secrets/secrets.yaml;
   sops.defaultSopsFormat = "yaml";
   sops.age.keyFile = "/home/calle/.config/sops/age/keys.txt";
   sops.defaultSymlinkPath = "/run/user/1000/secrets";
