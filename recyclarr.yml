@@ -8,13 +8,44 @@ radarr:
 
     quality_profiles:
       - name: HD Bluray + WEB
-        reset_unmatched_scores: true
+        reset_unmatched_scores:
+          enabled: true
+        upgrade:
+          allowed: true
+          until_quality: Bluray-1080p
+          until_score: 10000
+        min_format_score: 0
+        score_set: hd-bluray-web
+
       - name: UHD Bluray + WEB
-        reset_unmatched_scores: true
+        reset_unmatched_scores:
+          enabled: true
+        upgrade:
+          allowed: true
+          until_quality: Bluray-2160p
+          until_score: 10000
+        min_format_score: 0
+        score_set: uhd-bluray-web
+
       - name: Remux + WEB 1080p
-        reset_unmatched_scores: true
+        reset_unmatched_scores:
+          enabled: true
+        upgrade:
+          allowed: true
+          until_quality: Remux-1080p
+          until_score: 10000
+        min_format_score: 0
+        score_set: remux-web-1080p
+
       - name: Remux + WEB 2160p
-        reset_unmatched_scores: true
+        reset_unmatched_scores:
+          enabled: true
+        upgrade:
+          allowed: true
+          until_quality: Remux-2160p
+          until_score: 10000
+        min_format_score: 0
+        score_set: remux-web-2160p
 
     custom_formats:
       - trash_ids:
@@ -78,12 +109,11 @@ radarr:
           - name: Remux + WEB 2160p
 
       - trash_ids:
-          # Relase Groups
           - ed27ebfef2f323e964fb1f61391bcb35 # HD Bluray Tier 01
           - c20c8647f2746a1f4c4262b0fbbeeeae # HD Bluray Tier 02
           - 5608c71bcebba0a5e666223bae8c9227 # HD Bluray Tier 03
         assign_scores_to:
-          name: HD Bluray + WEB
+          - name: HD Bluray + WEB
 
       - trash_ids:
           # Release Grops
