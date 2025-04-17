@@ -8,6 +8,8 @@
       nix-minecraft.url = "github:Infinidoge/nix-minecraft";
       impermanence.url = "github:nix-community/impermanence";
       sops-nix.url = "github:Mic92/sops-nix";
+      home-manager.url = "github:nix-community/home-manager";
+      home-manager.inputs.nixpkgs.follows = "nixpkgs";
 };
 
   outputs =
@@ -18,6 +20,7 @@
       nixpkgs-unstable,
       impermanence,
       sops-nix,
+      home-manager,
       ...
     }:
   let
@@ -30,6 +33,12 @@
         system = "x86_64-linux";
         modules = [
           ./hosts/nixlab/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.calle = import ./home.nix;
+          }
           impermanence.nixosModules.impermanence
           sops-nix.nixosModules.sops
           nix-minecraft.nixosModules.minecraft-servers
