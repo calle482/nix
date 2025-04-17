@@ -15,7 +15,13 @@ radarr:
           until_quality: Bluray-1080p
           until_score: 10000
         min_format_score: 0
-        score_set: hd-bluray-web
+        qualities:
+          - name: Bluray-1080p
+          - name: WEB 1080P
+            qualities:
+              - WEBRip-1080p
+              - WEBDL-1080p
+          - name: Bluray-720p
 
       - name: UHD Bluray + WEB
         reset_unmatched_scores:
@@ -25,7 +31,13 @@ radarr:
           until_quality: Bluray-2160p
           until_score: 10000
         min_format_score: 0
-        score_set: uhd-bluray-web
+        qualities:
+          - name: Bluray-2160p
+          - name: WEB 2160p
+            qualities:
+              - WEBRip-2160p
+              - WEBDL-2160p
+
 
       - name: Remux + WEB 1080p
         reset_unmatched_scores:
@@ -35,7 +47,12 @@ radarr:
           until_quality: Remux-1080p
           until_score: 10000
         min_format_score: 0
-        score_set: remux-web-1080p
+        qualities:
+          - name: Remux-1080p
+          - name: WEB 1080p
+            qualities:
+              - WEBRip-1080p
+              - WEBDL-1080p
 
       - name: Remux + WEB 2160p
         reset_unmatched_scores:
@@ -45,7 +62,12 @@ radarr:
           until_quality: Remux-2160p
           until_score: 10000
         min_format_score: 0
-        score_set: remux-web-2160p
+        qualities:
+          - name: Remux-2160p
+          - name: WEB 2160p
+            qualities:
+              - WEBRip-2160p
+              - WEBDL-2160p
 
     custom_formats:
       - trash_ids:
