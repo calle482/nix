@@ -190,7 +190,7 @@ radarr:
 sonarr:
   sonarr_merged:
     base_url: http://localhost:8989
-    api_key: !secret sonarr_api_key
+    api_key: !secret sonnarr_api_key
 
     media_naming:
       series: default
@@ -274,7 +274,7 @@ sonarr:
           enabled: true
         upgrade:
           allowed: true
-          until_quality: Bluray-2160p
+          until_quality: WEB 2160p
         min_format_score: 0
         quality_sort: top
         qualities:
