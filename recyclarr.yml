@@ -1,7 +1,7 @@
 radarr:
   radarr_merged:
-    base_url: localhost: 7878
-    api_key: !secret radarr_merged_apikey
+    base_url: http://localhost:7878
+    api_key: d788eaf8794e4583a70f5297847a31c0
 
     quality_definition:
       type: movie
