@@ -68,9 +68,9 @@
     group = "media";
   };
 
-  services.recyclarr = {
-    enable = true;
-  };
+#  services.recyclarr = {
+#    enable = true;
+#  };
 
   #services.autobrr = {
   #  enable = true;
