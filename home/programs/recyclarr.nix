@@ -14,5 +14,5 @@
     sonarr_api_key: "${config.sops.secrets."sonarr/api_key".path}"
   '';
 
-  xdg.configFile."recyclarr/recyclarr.yml".source = ./config/recyclarr.yml;
+  xdg.configFile."recyclarr/recyclarr.yml".source = ./modules/config/recyclarr.yml;
 }
