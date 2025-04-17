@@ -3,6 +3,12 @@ radarr:
     base_url: http://localhost:7878
     api_key: d788eaf8794e4583a70f5297847a31c0
 
+    media_naming:
+      folder: default
+      movie:
+        rename: true
+        standard: jellyfin
+
     quality_definition:
       type: movie
 
@@ -179,8 +185,17 @@ radarr:
 
 # sonarr:
 #   sonarr_merged:
-#     base_url: localhost:8989
-#     api_key:
+#     base_url: http://localhost:8989
+#     api_key: !secret sonnarr_api_key
+#
+#     media_naming:
+#       series: default
+#       season: default
+#       episodes:
+#         rename: true
+#         standard: default
+#         daily: default
+#         anime: default
 #
 #     quality_definition:
 #       type: series
@@ -198,4 +213,3 @@ radarr:
 #         -
 #       assign_scores_to:
 #         - name: WEB 1080P V4
-#
