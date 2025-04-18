@@ -17,6 +17,7 @@
         inputs.nixpkgs.follows = "nixpkgs-unstable";
         inputs.home-manager.follows = "home-manager-unstable";
       };
+      hyprland.url = "github:hyprwm/Hyprland";
 };
 
   outputs =
@@ -28,7 +29,9 @@
       impermanence,
       sops-nix,
       home-manager,
+      home-manager-unstable
       plasma-manager,
+      hyprland,
       ...
     }:
   let
@@ -66,19 +69,21 @@
           inherit pkgs-unstable;
         };
       };
+
       nix = nixpkgs-unstable.lib.nixosSystem {
         system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
         modules = [
           ./hosts/nix/configuration.nix
-          home-manager.nixosModules.home-manager
+          home-manager-unstable.nixosModules.home-manager
           {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.sharedModules = [
+            home-manage-unstable.useGlobalPkgs = true;
+            home-manager-unstable.useUserPackages = true;
+            home-manager-unstable.sharedModules = [
               inputs.sops-nix.homeManagerModules.sops
               plasma-manager.homeManagerModules.plasma-manager
             ];
-            home-manager.users.calle = {
+            home-manager-unstable.users.calle = {
               imports = [
                 ./home/nix.nix
                 sops-nix.homeManagerModules.sops
