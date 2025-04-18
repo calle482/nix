@@ -12,7 +12,7 @@
   };
 
   # Floating Windows
-  windowrulev2 = {
+  windowrulev2 = [
    "float, class:^(org.pulseaudio.pavucontrol)"
    "float, class:^()$,title:^(Picture in picture)$"
    "float, class:^()$,title:^(Save File)$"
@@ -24,6 +24,6 @@
    "float, class:^(CachyOSHello)$"
    "float, class:^(zenity)$"
    "float, class:^()$,title:^(Steam - Self Updater)$"
-  };
+  ];
 
 }
