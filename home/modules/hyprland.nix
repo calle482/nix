@@ -12,10 +12,12 @@ in
     portalPackage = pkgs.xdg-desktop-portal-hyprland;
   };
 
- programs.hyprlock = {
+  programs.swaylock = {
     enable = true;
+    settings = {
+      color = "000000";
+    };
   };
-
 
   services.hypridle = {
     enable = true;
@@ -23,12 +25,12 @@ in
       general = {
         after_sleep_cmd = "hyprctl dispatch dpms on";
         ignore_dbus_inhibit = false;
-        lock_cmd = "hyprlock";
+        lock_cmd = "swaylock";
       };
       listener = [
         {
           timeout = 300;
-          on-timeout = "hyprlock";
+          on-timeout = "swaylock";
         }
         {
           timeout = 900;
@@ -45,7 +47,7 @@ in
 
     # Monitor
     monitor = [
-      "Virtual-1, 1920x1080, 0x0 1"
+      "Virtual-1, 1920x1080, 0x0, 1"
     ];
 
     # Keyboard
@@ -87,7 +89,7 @@ in
       "$mod, N, exec, ${browser}"
       "$mod, D, exec, ${pkgs.rofi-wayland}/bin/rofi -show drun -show-icons -icon-theme Paprius"
       "$mod SHIFT, E, exit"
-      "$mod, L, exec, hyprlock"
+      "$mod, L, exec, ${pkgs.swaylock}/bin/swaylock"
 
       # Move focus with mod + arrow keys
       "$mod, left, movefocus, l"
