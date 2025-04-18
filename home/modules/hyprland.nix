@@ -34,6 +34,8 @@ wayland.windowManager.hyprland.settings = {
 
   bind = [
     "$mod, Return, exec, ${terminal-bin}"
+    "$mod, Q, killactive"
+    "$mod, N, firefox"
   ];
 
 };

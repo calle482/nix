@@ -5,6 +5,8 @@
   imports = [
       ./hardware-configuration.nix
       ../../modules/sddm.nix
+      ../../modules/desktop.nix
+      ../../modules/gaming.nix
     ];
 
 
