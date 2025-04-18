@@ -7,6 +7,7 @@
       ../../modules/sddm.nix
       ../../modules/desktop.nix
       ../../modules/gaming.nix
+      ../../modules/hyprland.nix
     ];
 
 

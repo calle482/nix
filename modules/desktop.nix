@@ -7,6 +7,7 @@
       discord
       spotify
       xfce.thunar
+      gnome-system-monitor
   ];
 
 
