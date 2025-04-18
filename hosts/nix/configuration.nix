@@ -4,7 +4,7 @@
 
   imports = [
       ./hardware-configuration.nix
-      ../../modules/sddm.conf
+      ../../modules/sddm.nix
     ];
 
 
