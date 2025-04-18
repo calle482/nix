@@ -1,5 +1,7 @@
 { config, pkgs, lib, ... }:
-
+let
+  terminal-bin = "${pkgs.kitty}/bin/kitty";
+in
 {
 
   programs.kitty.enable = true; # required for the default Hyprland config
@@ -8,7 +10,6 @@
 wayland.windowManager.hyprland.settings = {
 
   "$mod" = "SUPER";
-  "terminal-bin" = "${pkgs.kitty}/bin/kitty";
 
   # Keyboard
   input = {
