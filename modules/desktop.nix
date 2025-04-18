@@ -4,7 +4,8 @@
 
     environment.systemPackages = with pkgs; [
       librewolf-bin
-      discord
+      #discord
+      vesktop
       spotify
       xfce.thunar
       gnome-system-monitor
@@ -12,6 +13,9 @@
       obs-studio
       baobab
       dconf
+      docker
+      docker-compose
+      gedit
   ];
 
 

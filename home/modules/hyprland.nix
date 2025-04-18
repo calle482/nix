@@ -29,7 +29,7 @@ in
     };
 
     exec-once = [
-      "${pkgs.waybar}/bin/waybar"
+      #"${pkgs.waybar}/bin/waybar"
     ];
 
     # Floating Windows
@@ -138,7 +138,7 @@ in
       # "col.shadow" = "0x99000000";
       # "col.shadow_inactive" = "0x55000000";
       active_opacity = 0.95;
-      inactive_opacity = 0.85;
+      inactive_opacity = 0.9;
       fullscreen_opacity = 1.0;
     };
 
