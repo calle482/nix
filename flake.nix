@@ -29,7 +29,7 @@
       impermanence,
       sops-nix,
       home-manager,
-      home-manager-unstable
+      home-manager-unstable,
       plasma-manager,
       hyprland,
       ...
