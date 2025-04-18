@@ -11,7 +11,7 @@ wayland.windowManager.hyprland.settings = {
   input = {
     kb_layout = "se";
     follow_mouse = 1;
-  }
+  };
 
   # Floating Windows
   windowrulev2 = [
