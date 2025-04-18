@@ -5,12 +5,6 @@
   programs.kitty.enable = true; # required for the default Hyprland config
   wayland.windowManager.hyprland.enable = true; # enable Hyprland
 
-  # Keyboard
-  input = {
-    kb_layout = "se";
-    follow_mouse = 1;
-  };
-
   # Floating Windows
   windowrulev2 = [
    "float, class:^(org.pulseaudio.pavucontrol)"
