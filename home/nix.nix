@@ -27,6 +27,7 @@
     ./modules/mpv.nix
     ./modules/alacritty.nix
     ./modules/fonts.nix
+    ./modules/theming.nix
   ];
 
 }

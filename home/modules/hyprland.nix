@@ -6,7 +6,12 @@ in
 {
 
   programs.alacritty.enable = true;
-  wayland.windowManager.hyprland.enable = true; # enable Hyprland
+  wayland.windowManager.hyprland = {
+    enable = true;
+    # set the flake package
+    package = pkgs.hyprland;
+    portalPackage = pkgs.xdg-desktop-portal-hyprland;
+  };
 
   wayland.windowManager.hyprland.settings = {
 
@@ -37,7 +42,6 @@ in
      "float, class:^(blueman-manager)$"
      "float, class:^(xdg-desktop-portal-gtk|xdg-desktop-portal-kde|xdg-desktop-portal-hyprland)(.*)$"
      "float, class:^(polkit-gnome-authentication-agent-1|hyprpolkitagent|org.org.kde.polkit-kde-authentication-agent-1)(.*)$"
-     "float, class:^(CachyOSHello)$"
      "float, class:^(zenity)$"
      "float, class:^()$,title:^(Steam - Self Updater)$"
 

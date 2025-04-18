@@ -2,6 +2,13 @@
 
 {
 
+  environment.systemPackages = with pkgs; [
+    nvtopPackages.nvidia
+    nvidia-vaapi-driver
+    nvidia-docker
+    nvidia-container-toolkit
+  ];
+
   hardware.graphics = {
     enable = true;
   };
@@ -15,5 +22,4 @@
     powerManagement.finegrained = false;
     nvidiaSettings = true;
   };
-
 }
