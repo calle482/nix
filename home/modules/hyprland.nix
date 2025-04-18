@@ -7,6 +7,9 @@
 
 wayland.windowManager.hyprland.settings = {
 
+  "$mod" = "SUPER";
+  "terminal-bin" = "${pkgs.kitty}/bin/kitty";
+
   # Keyboard
   input = {
     kb_layout = "se";
@@ -26,6 +29,10 @@ wayland.windowManager.hyprland.settings = {
    "float, class:^(CachyOSHello)$"
    "float, class:^(zenity)$"
    "float, class:^()$,title:^(Steam - Self Updater)$"
+  ];
+
+  bind = [
+    "$mod, Return, exec, ${terminal-bin}"
   ];
 
 };
