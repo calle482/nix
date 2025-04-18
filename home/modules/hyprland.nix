@@ -5,6 +5,8 @@
   programs.kitty.enable = true; # required for the default Hyprland config
   wayland.windowManager.hyprland.enable = true; # enable Hyprland
 
+wayland.windowManager.hyprland.settings = {
+
   # Floating Windows
   windowrulev2 = [
    "float, class:^(org.pulseaudio.pavucontrol)"
@@ -19,5 +21,7 @@
    "float, class:^(zenity)$"
    "float, class:^()$,title:^(Steam - Self Updater)$"
   ];
+
+};
 
 }
