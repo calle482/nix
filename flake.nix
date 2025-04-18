@@ -77,13 +77,13 @@
           ./hosts/nix/configuration.nix
           home-manager-unstable.nixosModules.home-manager
           {
-            home-manager-unstable.useGlobalPkgs = true;
-            home-manager-unstable.useUserPackages = true;
-            home-manager-unstable.sharedModules = [
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.sharedModules = [
               inputs.sops-nix.homeManagerModules.sops
               plasma-manager.homeManagerModules.plasma-manager
             ];
-            home-manager-unstable.users.calle = {
+            home-manager.users.calle = {
               imports = [
                 ./home/nix.nix
                 sops-nix.homeManagerModules.sops
