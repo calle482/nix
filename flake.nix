@@ -12,12 +12,12 @@
       home-manager.inputs.nixpkgs.follows = "nixpkgs";
       home-manager-unstable.url= "github:nix-community/home-manager";
       home-manager-unstable.inputs.nixpkgs.follows = "nixpkgs-unstable";
+      hyprland.url = "github:hyprwm/Hyprland";
       plasma-manager = {
         url = "github:nix-community/plasma-manager";
         inputs.nixpkgs.follows = "nixpkgs-unstable";
         inputs.home-manager.follows = "home-manager-unstable";
-      };,
-      hyprland.url = "github:hyprwm/Hyprland";
+      };
 };
 
   outputs =
