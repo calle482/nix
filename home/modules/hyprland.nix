@@ -12,6 +12,11 @@ in
 
     "$mod" = "SUPER";
 
+    # Monitor
+    monitor = [
+      "Virtual-1, 1920x1080, 0x0 1"
+    ];
+
     # Keyboard
     input = {
       kb_layout = "se";
@@ -35,13 +40,23 @@ in
      "float, class:^(CachyOSHello)$"
      "float, class:^(zenity)$"
      "float, class:^()$,title:^(Steam - Self Updater)$"
+
+      # Assign programs to specific workspaces
+      "workspace 1, class:(librewolf)"
+      "workspace 3, class:(discord)"
+      "workspace 3, class:(vesktop)"
+      "workspace 4, class:(Spotify)"
+      "workspace 5, class:(alacritty)"
+      "workspace 6, class:(Steam)"
+      "workspace 10, class:(obs)"
     ];
 
     bind = [
       "$mod, Return, exec, ${terminal-bin}"
       "$mod, Q, killactive"
       "$mod, N, exec, ${browser}"
-      "$mod, D, exec, ${pkgs.rofi-wayland}/bin/rofi -show run -show-icons -icon-theme Paprius"
+      "$mod, D, exec, ${pkgs.rofi-wayland}/bin/rofi -show drun -show-icons -icon-theme Paprius"
+      "$mod SHIFT, E, exit"
 
       # Move focus with mod + arrow keys
       "$mod, left, movefocus, l"

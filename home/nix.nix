@@ -25,6 +25,8 @@
     ./modules/waybar.nix
     ./modules/rofi.nix
     ./modules/mpv.nix
+    ./modules/alacritty.nix
+    ./modules/fonts.nix
   ];
 
 }

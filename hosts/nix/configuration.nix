@@ -8,6 +8,7 @@
       ../../modules/desktop.nix
       ../../modules/gaming.nix
       ../../modules/hyprland.nix
+      ../../mullvad.nix
     ];
 
 
