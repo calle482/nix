@@ -2,11 +2,11 @@
 
 {
 
-    environment.systemPackages = with pkgs[
+    environment.systemPackages = with pkgs; [
       librewolf-bin
       discord
       spotify
-      thunar
+      xfce.thunar
   ];
 
 
