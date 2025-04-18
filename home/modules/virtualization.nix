@@ -9,6 +9,4 @@ dconf.settings = {
   };
 };
 
-users.users.calle.extraGroups = [ "libvirtd" ];
-
 }

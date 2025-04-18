@@ -28,6 +28,7 @@
     ./modules/alacritty.nix
     ./modules/fonts.nix
     ./modules/theming.nix
+    ./modules/virtualization.nix
   ];
 
 }

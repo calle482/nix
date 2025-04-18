@@ -13,7 +13,7 @@
         padding.x = 2;
         padding.y = 2;
         dynamic_padding = false;
-        opacity = 0.7;
+        opacity = 0.6;
       };
       scrolling = {
         history = 10000;

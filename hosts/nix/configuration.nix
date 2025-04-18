@@ -8,6 +8,8 @@
       ../../modules/gaming.nix
       ../../modules/hyprland.nix
       ../../modules/mullvad.nix
+      ../../modules/virtualization.nix
+      ../../modules/sddm.nix
     ];
 
 
@@ -58,7 +60,7 @@
     isNormalUser = true;
     description = "calle";
     hashedPassword = "$6$zz5.EZMDjqHoXaeU$2rxBO2RzliIic7E1Rxau/3FudYlm5c1x3LId1KB29LOJZ/T6pDy6Ta.s6jZbduIOhfOu1VWR.eelDngVvSGke0";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
     packages = with pkgs; [];
   };
 

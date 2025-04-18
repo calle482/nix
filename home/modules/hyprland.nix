@@ -4,13 +4,39 @@ let
   browser = "${pkgs.librewolf-bin}/bin/librewolf";
 in
 {
-
   programs.alacritty.enable = true;
   wayland.windowManager.hyprland = {
     enable = true;
     # set the flake package
     package = pkgs.hyprland;
     portalPackage = pkgs.xdg-desktop-portal-hyprland;
+  };
+
+ programs.hyprlock = {
+    enable = true;
+  };
+
+
+  services.hypridle = {
+    enable = true;
+    settings = {
+      general = {
+        after_sleep_cmd = "hyprctl dispatch dpms on";
+        ignore_dbus_inhibit = false;
+        lock_cmd = "hyprlock";
+      };
+      listener = [
+        {
+          timeout = 300;
+          on-timeout = "hyprlock";
+        }
+        {
+          timeout = 900;
+          on-timeout = "hyprctl dispatch dpms off";
+          on-resume = "hyprctl dispatch dpms on";
+        }
+      ];
+    };
   };
 
   wayland.windowManager.hyprland.settings = {
@@ -61,6 +87,7 @@ in
       "$mod, N, exec, ${browser}"
       "$mod, D, exec, ${pkgs.rofi-wayland}/bin/rofi -show drun -show-icons -icon-theme Paprius"
       "$mod SHIFT, E, exit"
+      "$mod, L, exec, hyprlock"
 
       # Move focus with mod + arrow keys
       "$mod, left, movefocus, l"
@@ -137,8 +164,8 @@ in
       # shadow_offset = "3 3";
       # "col.shadow" = "0x99000000";
       # "col.shadow_inactive" = "0x55000000";
-      active_opacity = 0.95;
-      inactive_opacity = 0.9;
+      active_opacity = 1.0;
+      inactive_opacity = 0.85;
       fullscreen_opacity = 1.0;
     };
 
