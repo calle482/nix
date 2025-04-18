@@ -3,7 +3,7 @@
 {
 
     environment.systemPackages = with pkgs; [
-      rofi-wayland
+      #rofi-wayland
       papirus-icon-theme
   ];
 

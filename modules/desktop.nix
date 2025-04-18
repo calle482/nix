@@ -8,6 +8,7 @@
       spotify
       xfce.thunar
       gnome-system-monitor
+      pavucontrol
   ];
 
 

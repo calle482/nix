@@ -23,6 +23,8 @@
   imports = [
     ./modules/hyprland.nix
     ./modules/waybar.nix
+    ./modules/rofi.nix
+    ./modules/mpv.nix
   ];
 
 }

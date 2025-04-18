@@ -6,29 +6,29 @@
     enable = true;
     config = {
       ## Video
-      profile=high-quality
-      vo=gpu-next
-      scale-antiring=0.6
+      profile = "high-quality";
+      vo = "gpu-next";
+      scale-antiring = "0.6";
 
       # Dither
       # This must be set to match your monitor's bit depth
-      dither-depth = 8
+      dither-depth = "8";
 
       ## Behavior (personal preference)
-      keep-open=yes
-      save-position-on-quit
+      keep-open= "yes";
+      save-position-on-quit = "yes";
 
       ## Screenshots
-      screenshot-format=png
-      screenshot-dir="~/Pictures/mpv"
-      screenshot-template="%F-%p-%n"
-      screenshot-high-bit-depth=no
+      screenshot-format = "png";
+      screenshot-dir = "~/Pictures/mpv";
+      screenshot-template = "%F-%p-%n";
+      screenshot-high-bit-depth = "no";
 
       ## Language Priority
       ## Sub
       ## Add enm before eng for honorifics
-      slang=eng,en
-      alang=jpn,ja
+      slang= "eng,en";
+      alang= "jpn,ja";
 
       ## Dub
       #slang=zxx,eng,en
@@ -36,23 +36,25 @@
       #subs-with-matching-audio=forced
 
       #skin
-      osc = no
-      border = no # Optional, but recommended
+      osc = "no";
+      border = "no"; # Optional, but recommended
 
       # Volume
-      volume-max=300
-      volume=50
+      volume-max = "300";
+      volume = "50";
 
       # Loop video by default
-      loop-file='inf'
+      loop-file= "inf";
 
     };
     bindings = {
-      #g cycle-values glsl-shaders "~~/shaders/ArtCNN_C4F32.glsl" ""
-      UP add volume 5
-      DOWN add volume -5
-      r cycle_values video-rotate 90 180 270 0
+      g = "cycle-values glsl-shaders " + "~~/shaders/ArtCNN_C4F32.glsl" + " ";
+      UP = "add volume 5";
+      DOWN = "add volume -5";
+      r = "cycle_values video-rotate 90 180 270 0";
     };
   };
+
+  xdg.configFile."mpv/shaders/ArtCNN_C4F32.glsl".source = ./config/ArtCNN_C4F32.glsl;
 
 }
