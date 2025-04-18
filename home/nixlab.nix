@@ -21,7 +21,7 @@
   sops.defaultSecretsMountPoint = "/run/user/1000/secrets.d";
 
   imports = [
-    ./programs/recyclarr.nix
+    ./modules/recyclarr.nix
   ];
 
 }

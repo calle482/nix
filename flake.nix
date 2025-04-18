@@ -10,6 +10,13 @@
       sops-nix.url = "github:Mic92/sops-nix";
       home-manager.url = "github:nix-community/home-manager/release-24.11";
       home-manager.inputs.nixpkgs.follows = "nixpkgs";
+      home-manager-unstable.url= "github:nix-community/home-manager";
+      home-manager-unstable.inputs.nixpkgs.follows = "nixpkgs-unstable";
+      plasma-manager = {
+        url = "github:nix-community/plasma-manager";
+        inputs.nixpkgs.follows = "nixpkgs-unstable";
+        inputs.home-manager.follows = "home-manager-unstable";
+      };
 };
 
   outputs =
@@ -21,6 +28,7 @@
       impermanence,
       sops-nix,
       home-manager,
+      plasma-manager,
       ...
     }:
   let
@@ -57,6 +65,28 @@
         specialArgs = {
           inherit pkgs-unstable;
         };
+      };
+      nix = nixpkgs-unstable.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/nix/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.sharedModules = [
+              inputs.sops-nix.homeManagerModules.sops
+              plasma-manager.homeManagerModules.plasma-manager
+            ];
+            home-manager.users.calle = {
+              imports = [
+                ./home/nix.nix
+                sops-nix.homeManagerModules.sops
+              ];
+            };
+          }
+          sops-nix.nixosModules.sops
+        ];
       };
     };
   };
