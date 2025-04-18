@@ -77,7 +77,7 @@
           ./hosts/nix/configuration.nix
           home-manager-unstable.nixosModules.home-manager
           {
-            home-manage-unstable.useGlobalPkgs = true;
+            home-manager-unstable.useGlobalPkgs = true;
             home-manager-unstable.useUserPackages = true;
             home-manager-unstable.sharedModules = [
               inputs.sops-nix.homeManagerModules.sops
