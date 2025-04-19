@@ -139,6 +139,9 @@
       settings = [{
         "layer" = "top";
         "position" = "top";
+        "output" = [
+          "Virtual-1"
+        ];
         modules-left = [
           "hyprland/workspaces"
         ];

@@ -87,7 +87,7 @@ in
       "[workspace 4 silent] ${pkgs.spotify}/bin/spotify"
       "[workspace 5 silent] ${terminal-bin}"
       "[workspace 6 silent] ${pkgs.steam}/bin/steam"
-      "[workspace 10 silent] ${pkgs.obs-studio}/bin/obs"
+      "[workspace 10 silent] ${pkgs.obs-studio}/bin/obs --disable-shutdown-check --startreplaybuffer"
     ];
 
     # Floating Windows

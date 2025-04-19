@@ -39,6 +39,10 @@
 programs.firefox = {
   enable = true;
   package = pkgs.librewolf;
+  preferences = {
+    "toolkit.tabbox.switchByScrolling" = true; # Doesn't work - has to be set manually :(
+    "browser.sessionstore.resume_from_crash" = false;
+  };
   policies = {
     ExtensionSettings = {
       # Ublock Origin - Addon

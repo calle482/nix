@@ -6,6 +6,7 @@
       steam
       lutris
       osu-lazer-bin
+      prismlauncher
   ];
 
 }
