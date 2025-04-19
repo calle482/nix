@@ -28,6 +28,11 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  # Enable firewall
+  networking.firewall = {
+    enable = true;
+  };
+
   # Set your time zone.
   time.timeZone = "Europe/Stockholm";
 
