@@ -19,8 +19,8 @@ in
     XCURSOR_SIZE = "24";
     QT_STYLE_OVERRIDE = lib.mkForce "gtk";
     NIXOS_OZONE_WL = "1";
-    HYPRCURSOR_THEME = xcursor_theme;
-    HYPRCURSOR_SIZE = "24";
+    #HYPRCURSOR_THEME = xcursor_theme;
+    #HYPRCURSOR_SIZE = "24";
   };
 
   programs.alacritty.enable = true;
@@ -76,14 +76,14 @@ in
     };
 
     exec-once = [
-      #"${pkgs.waybar}/bin/waybar"
+      "${pkgs.waybar}/bin/waybar"
       "${pkgs.hyprland}/bin/hyprctl setcursor ${xcursor_theme} 24"
       "[workspace 1 silent] ${browser}"
       "[workspace 3 silent] ${pkgs.vesktop}/bin/vesktop"
       "[workspace 4 silent] ${pkgs.spotify}/bin/spotify"
       "[workspace 5 silent] ${terminal-bin}"
       "[workspace 6 silent] ${pkgs.steam}/bin/steam"
-      "[worksapce 10 silent] ${pkgs.obs-studio}/bin/obs"
+      "[workspace 10 silent] ${pkgs.obs-studio}/bin/obs"
     ];
 
     # Floating Windows
@@ -117,6 +117,7 @@ in
       "$mod SHIFT, E, exit"
       "$mod, L, exec, ${pkgs.swaylock}/bin/swaylock"
       "$mod, F, fullscreen"
+      "$mod, X, movecurrentworkspacetomonitor, -1"
 
       # Move focus with mod + arrow keys
       "$mod, left, movefocus, l"
@@ -153,6 +154,7 @@ in
       "$mod SHIFT, 7, movetoworkspacesilent, 7"
       "$mod SHIFT, 8, movetoworkspacesilent, 8"
       "$mod SHIFT, 9, movetoworkspacesilent, 9"
+      "$mod SHIFT, 0, movetoworkspacesilent, 10"
     ];
 
     animations = {

@@ -19,14 +19,14 @@
       package = pkgs.roboto;
       name = "JetBrainsMono Nerd Font Mono 12";
     };
-    #cursorTheme = {
-    #  package = pkgs.nordzy-cursor-theme;
-    #  name = "Nordzy-cursors";
-    #};
     cursorTheme = {
-      package = pkgs.kdePackages.breeze;
-      name = "breeze-dark";
+      package = pkgs.nordzy-cursor-theme;
+      name = "Nordzy-cursors";
     };
+    #cursorTheme = {
+    #  package = pkgs.kdePackages.breeze;
+    #  name = "breeze";
+    #};
     iconTheme = {
       package = pkgs.papirus-icon-theme;
       name = "Papirus-Dark";
