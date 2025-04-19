@@ -9,7 +9,7 @@
       ../../modules/hyprland.nix
       ../../modules/mullvad.nix
       ../../modules/virtualization.nix
-      ../../modules/lightdm.nix
+      ../../modules/sddm.nix
     ];
 
 
