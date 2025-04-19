@@ -60,6 +60,7 @@ in
     };
   };
 
+
   wayland.windowManager.hyprland.settings = {
 
     "$mod" = "SUPER";
@@ -121,6 +122,12 @@ in
       "$mod, L, exec, ${pkgs.swaylock}/bin/swaylock"
       "$mod, F, fullscreen"
       "$mod, X, movecurrentworkspacetomonitor, -1"
+
+      # Resize windows
+      "$mod Control_L, left, resizeactive, -10 0"
+      "$mod Control_L, right, resizeactive, 10 0"
+      "$mod Control_L, up, resizeactive, 0 -10"
+      "$mod Control_L, down, resizeactive, 0 10"
 
       # Move focus with mod + arrow keys
       "$mod, left, movefocus, l"
@@ -202,6 +209,23 @@ in
       inactive_opacity = 0.85;
       fullscreen_opacity = 1.0;
     };
+
+    # Allow tearing
+    general = {
+      allow_tearing = true;
+    };
+
+    windowrule = [
+      "immediate, class:^(cs2)$"
+      "immediate, class:(overwatch)$"
+    ];
+
+    # Set solid black background
+    misc = {
+      disable_hyprland_logo = true;
+      background_color = "0x000000";
+    };
+
 
 };
 

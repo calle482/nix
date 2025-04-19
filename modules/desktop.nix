@@ -18,6 +18,9 @@
       docker-compose
       gedit
       killall
+      brave
+      gnome-calculator
+      neofetch
   ];
 
   # Needed for swaylock to work - otherwise wont accept password even though it's correct
