@@ -8,6 +8,8 @@
 
   home.stateVersion = "24.11"; # This should not be changed, keep at the version which the system was installed on
 
+  #programs.home-manager.backupFileExtension = "backup";
+
   home.sessionVariables = {
     EDITOR = "vim";
   };
@@ -29,6 +31,7 @@
     ./modules/fonts.nix
     ./modules/theming.nix
     ./modules/virtualization.nix
+    ./modules/vscodium.nix
   ];
 
 }

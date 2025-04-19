@@ -17,15 +17,19 @@
     enable = true;
     font = {
       package = pkgs.roboto;
-      name = "Roboto Medium 12";
+      name = "JetBrainsMono Nerd Font Mono 12";
     };
+    #cursorTheme = {
+    #  package = pkgs.nordzy-cursor-theme;
+    #  name = "Nordzy-cursors";
+    #};
     cursorTheme = {
-      package = pkgs.nordzy-cursor-theme;
-      name = "Nordzy-cursors";
+      package = pkgs.kdePackages.breeze;
+      name = "breeze-dark";
     };
     iconTheme = {
-      package = pkgs.adwaita-icon-theme;
-      name = "Adwaita";
+      package = pkgs.papirus-icon-theme;
+      name = "Papirus-Dark";
     };
     theme = {
       package = pkgs.adw-gtk3;

@@ -2,8 +2,27 @@
 let
   terminal-bin = "${pkgs.alacritty}/bin/alacritty";
   browser = "${pkgs.librewolf-bin}/bin/librewolf";
+  xcursor_theme = config.gtk.cursorTheme.name;
 in
 {
+
+  home.sessionVariables = {
+    GDK_BACKEND = "wayland";
+    CLUTTER_BACKEND = "wayland";
+    QT_QPA_PLATFORM = "";
+    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+    QT_WAYLAND_FORCE_DPI = "physical";
+    SDL_VIDEODRIVER = "wayland";
+    MOZ_ENABLE_WAYLAND = "1";
+    MOZ_USE_XINPUT2 = "1";
+    XCURSOR_THEME = xcursor_theme;
+    XCURSOR_SIZE = "24";
+    QT_STYLE_OVERRIDE = lib.mkForce "gtk";
+    NIXOS_OZONE_WL = "1";
+    HYPRCURSOR_THEME = xcursor_theme;
+    HYPRCURSOR_SIZE = "24";
+  };
+
   programs.alacritty.enable = true;
   wayland.windowManager.hyprland = {
     enable = true;
@@ -58,6 +77,13 @@ in
 
     exec-once = [
       #"${pkgs.waybar}/bin/waybar"
+      "${pkgs.hyprland}/bin/hyprctl setcursor ${xcursor_theme} 24"
+      "[workspace 1 silent] ${browser}"
+      "[workspace 3 silent] ${pkgs.vesktop}/bin/vesktop"
+      "[workspace 4 silent] ${pkgs.spotify}/bin/spotify"
+      "[workspace 5 silent] ${terminal-bin}"
+      "[workspace 6 silent] ${pkgs.steam}/bin/steam"
+      "[worksapce 10 silent] ${pkgs.obs-studio}/bin/obs"
     ];
 
     # Floating Windows
@@ -90,6 +116,7 @@ in
       "$mod, D, exec, ${pkgs.rofi-wayland}/bin/rofi -show drun -show-icons -icon-theme Paprius"
       "$mod SHIFT, E, exit"
       "$mod, L, exec, ${pkgs.swaylock}/bin/swaylock"
+      "$mod, F, fullscreen"
 
       # Move focus with mod + arrow keys
       "$mod, left, movefocus, l"

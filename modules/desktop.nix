@@ -7,6 +7,8 @@
       vesktop
       spotify
       xfce.thunar
+      ffmpegthumbnailer # Needed for thumbnails in thunar
+      xfce.tumbler # Needed for thumbnails in thunar
       gnome-system-monitor
       pavucontrol
       obs-studio
