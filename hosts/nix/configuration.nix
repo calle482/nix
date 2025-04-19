@@ -10,6 +10,7 @@
       ../../modules/mullvad.nix
       ../../modules/virtualization.nix
       ../../modules/sddm.nix
+      ../../modules/distrobox.nix
     ];
 
 
