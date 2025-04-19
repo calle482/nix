@@ -139,9 +139,9 @@
       settings = [{
         "layer" = "top";
         "position" = "top";
-        "output" = [
-          "Virtual-1"
-        ];
+        #"output" = [
+        #  "Virtual-1"
+        #];
         modules-left = [
           "hyprland/workspaces"
         ];
@@ -165,9 +165,9 @@
         };
         "clock" = {
           "interval" = 1;
-           "format" = "{:%H:%M %A %b %d}";
+          "format" = "{:%H:%M %A %b %d}";
           "tooltip" = true;
-          "tooltip-format"= "{=%A; %d %B %Y}\n<tt>{calendar}</tt>";
+          "tooltip-format" = "{:%A, %d %B %Y}\n<tt>{calendar}</tt>";
         };
         "memory" = {
           "interval" = 1;
