@@ -24,12 +24,13 @@ in
   };
 
   programs.alacritty.enable = true;
-  wayland.windowManager.hyprland = {
-    enable = true;
-    # set the flake package
-    package = pkgs.hyprland;
-    portalPackage = pkgs.xdg-desktop-portal-hyprland;
-  };
+  wayland.windowManager.hyprland.enable = true;
+  #wayland.windowManager.hyprland = {
+  #  enable = true;
+  #  # set the flake package
+  #  package = pkgs.hyprland;
+  #  portalPackage = pkgs.xdg-desktop-portal-hyprland;
+  #};
 
   programs.swaylock = {
     enable = true;

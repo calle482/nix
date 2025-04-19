@@ -21,10 +21,13 @@
       brave
       gnome-calculator
       neofetch
+      papirus-icon-theme
   ];
 
   # Needed for swaylock to work - otherwise wont accept password even though it's correct
   security.pam.services.swaylock = {};
+
+  services.xserver.enable = true;
 
   services.pipewire = {
     enable = true;
