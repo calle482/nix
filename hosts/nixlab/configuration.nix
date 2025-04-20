@@ -6,7 +6,7 @@
       ../../modules/media.nix
       ../../modules/minecraft_server.nix
       ../../modules/caddy.nix
-      #../../modules/recyclarr.nix
+      ../../modules/zram.nix
     ];
 
 
@@ -116,8 +116,6 @@
       { file = "/etc/nix/id_rsa"; parentDirectory = { mode = "u=rwx,g=,o="; }; }
     ];
   };
-
-  zramSwap.enable = true;
 
   # sops
   sops.defaultSopsFile = ../../secrets/secrets.yaml;

@@ -12,6 +12,7 @@
       ../../modules/sddm.nix
       ../../modules/distrobox.nix
       ../../modules/docker.nix
+      ../../modules/zram.nix
     ];
 
 
@@ -98,8 +99,6 @@
   system.stateVersion = "24.11"; # Did you read the comment?
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  zramSwap.enable = true;
 
   # sops
   sops.defaultSopsFile = ../../secrets/secrets.yaml;

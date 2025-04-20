@@ -28,17 +28,12 @@ RUN mkdir /build && \
 # Switch to the build user
 USER builduser
 
-# Step 1 - Clone AOCC
+# Clone & build AOCC
 RUN cd /build && \
-    git clone https://aur.archlinux.org/aocc.git aocc
-
-# Step 2 - Copy local AOCC tar
-COPY aocc-compiler-5.0.0.tar /build/aocc/aocc-compiler-5.0.0.tar
-
-# Step 3 - build AOCC
-RUN cd /build/aocc && \
-    makepkg -si --noconfirm && \
-    sudo rm -rf /build/aocc
+    git clone https://aur.archlinux.org/aocc.git aocc && \
+    cd aocc && \
+    wget https://download.amd.com/developer/eula/aocc/aocc-5-0/aocc-compiler-5.0.0.tar && \
+    makepkg -si --noconfirm
 
 # Set up AOCC environment and build svt-av1-psy
 RUN bash -c " cd /build && \
@@ -47,7 +42,7 @@ RUN bash -c " cd /build && \
     export CXX=clang++ && \
     export LD=lld && \
     cd /build && \
-    git clone https://github.com/gianni-rosato/svt-av1-psy --depth 25 && \
+    git clone https://github.com/psy-ex/svt-av1-psy --depth 25 && \
     cd svt-av1-psy && \
     mkdir svt_build && cd svt_build && \
     cmake .. -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DSVT_AV1_LTO=OFF -DNATIVE=ON -DCMAKE_CXX_FLAGS=\"-flto=full\" -DCMAKE_C_FLAGS=\"-flto=full\" -DCMAKE_LD_FLAGS=\"-flto=full\" && \
@@ -62,4 +57,4 @@ RUN rm -rf /build && \
     rm -rf /etc/sudoers.d/builduser
 
 # Set the default command for the container
-CMD ["tail", "-f", "/dev/null"]
+#CMD ["tail", "-f", "/dev/null"]
