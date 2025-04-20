@@ -22,6 +22,7 @@
       gnome-calculator
       neofetch
       papirus-icon-theme
+      eog
   ];
 
   # Needed for swaylock to work - otherwise wont accept password even though it's correct

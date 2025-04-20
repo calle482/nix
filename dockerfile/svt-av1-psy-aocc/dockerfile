@@ -12,6 +12,7 @@ RUN pacman -Syu --noconfirm \
     av1an \
     ffmpeg \
     wget \
+    nasm \
     --needed
 
 # Create a temporary user for building yay and set up passwordless sudo
@@ -27,11 +28,15 @@ RUN mkdir /build && \
 # Switch to the build user
 USER builduser
 
-# Clone and AOCC
+# Step 1 - Clone AOCC
 RUN cd /build && \
-    git clone https://aur.archlinux.org/aocc.git aocc && \
-    cd aocc && \
-    wget https://www.amd.com/en/developer/aocc/eula/aocc-5-0-eula.html?filename=aocc-compiler-5.0.0.tar && \
+    git clone https://aur.archlinux.org/aocc.git aocc
+
+# Step 2 - Copy local AOCC tar
+COPY aocc-compiler-5.0.0.tar /build/aocc/aocc-compiler-5.0.0.tar
+
+# Step 3 - build AOCC
+RUN cd /build/aocc && \
     makepkg -si --noconfirm && \
     sudo rm -rf /build/aocc
 
@@ -42,15 +47,19 @@ RUN bash -c " cd /build && \
     export CXX=clang++ && \
     export LD=lld && \
     cd /build && \
-    git clone https://github.com/gianni-rosato/svt-av1-psy svt-av1-psy && \
+    git clone https://github.com/gianni-rosato/svt-av1-psy --depth 25 && \
     cd svt-av1-psy && \
     mkdir svt_build && cd svt_build && \
     cmake .. -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DSVT_AV1_LTO=OFF -DNATIVE=ON -DCMAKE_CXX_FLAGS=\"-flto=full\" -DCMAKE_C_FLAGS=\"-flto=full\" -DCMAKE_LD_FLAGS=\"-flto=full\" && \
     make -j$(nproc) && \
     sudo make install"
 
+USER root
+
 # Clean up (optional to reduce image size)
-RUN sudo rm -rf /build
+RUN rm -rf /build && \
+    userdel builduser && \
+    rm -rf /etc/sudoers.d/builduser
 
 # Set the default command for the container
-CMD ["/bin/bash"]
+CMD ["tail", "-f", "/dev/null"]
