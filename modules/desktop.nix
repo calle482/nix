@@ -23,6 +23,7 @@
       neofetch
       papirus-icon-theme
       eog
+      jellyfin-media-player
   ];
 
   # Needed for swaylock to work - otherwise wont accept password even though it's correct
