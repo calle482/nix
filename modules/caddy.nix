@@ -21,8 +21,8 @@ sops.secrets."cloudflare/api_key" = {
 services.caddy = {
   enable = true;
   package = pkgs-unstable.caddy.withPlugins {
-    plugins = [ "github.com/caddy-dns/cloudflare@v0.0.0-20240703190432-89f16b99c18e" "github.com/caddyserver/transform-encoder@v0.0.0-20231219065943-58ebafa572d5" ];
-    hash = ["sha256-q5iuQXGsMXYu0Qzf1rvsaN0FagKmxle7o1l+7Bx5J9E="];
+    plugins = [ "github.com/caddy-dns/cloudflare@v0.2.1" "github.com/caddyserver/transform-encoder@v0.0.0-20231219065943-58ebafa572d5" ];
+    hash = ["sha256-seEPxuaR71Nq7EM2hcQFbzVj8TeZM7RDXvn6hzuG0+8="];
   };
   configFile = ./caddyfile;
 };
