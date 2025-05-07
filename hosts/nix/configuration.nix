@@ -13,6 +13,7 @@
       ../../modules/distrobox.nix
       ../../modules/docker.nix
       ../../modules/zram.nix
+      ../../modules/nvidia.nix
     ];
 
 
