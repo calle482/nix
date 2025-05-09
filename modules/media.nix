@@ -81,14 +81,14 @@
   #  openFirewall =  true;
   #};
 
-  services.qbittorrent = {
-    enable = true;
-    openFirewall = true;
-    user = "media";
-    group = "media";
-    torrentingPort = 1234;
-    profileDir = "/apps/qbittorrent";
-  };
+  # services.qbittorrent = {
+  #   enable = true;
+  #   openFirewall = true;
+  #   user = "media";
+  #   group = "media";
+  #   torrentingPort = 1234;
+  #   profileDir = "/apps/qbittorrent";
+  # };
 
 
   # Set DNS server
@@ -139,10 +139,10 @@
   # Bind services to wireguard
   systemd.services = {
     qbittorrent = {
-      bindsTo = [ "netns@wg.service" ];
-      requires = [ "network-online.target" "wg.service" ];
-      serviceConfig.NetworkNamespacePath = [ "/var/run/netns/wg" ];
-    };
+   #   bindsTo = [ "netns@wg.service" ];
+   #   requires = [ "network-online.target" "wg.service" ];
+   #   serviceConfig.NetworkNamespacePath = [ "/var/run/netns/wg" ];
+   # };
     radarr = {
       bindsTo = [ "netns@wg.service" ];
       requires = [ "network-online.target" "wg.service" ];
@@ -161,12 +161,12 @@
   };
 
   # allowing qbittorrent & arr web access in wg namespace, a socket is necesarry
-  systemd.sockets."proxy-to-qbittorrent" = {
-   enable = true;
-   description = "Socket for Proxy to Qbittorrent Daemon";
-   listenStreams = [ "8080"];
-   wantedBy = [ "sockets.target" ];
-  };
+  # systemd.sockets."proxy-to-qbittorrent" = {
+  #  enable = true;
+  #  description = "Socket for Proxy to Qbittorrent Daemon";
+  #  listenStreams = [ "8080"];
+  #  wantedBy = [ "sockets.target" ];
+  # };
 
   systemd.sockets."proxy-to-radarr" = {
    enable = true;
@@ -191,19 +191,19 @@
 
 
   # creating proxy service on socket, which forwards the same port from the root namespace to the wg namespace
-  systemd.services."proxy-to-qbittorrent" = {
-   enable = true;
-   description = "Proxy to Qbittorrent Daemon in Wireguard Namespace";
-   requires = [ "qbittorrent.service" "proxy-to-qbittorrent.socket" ];
-   after = [ "qbittorrent.service" ".proxy-to-qbittorrent.socket" ];
-   unitConfig = { JoinsNamespaceOf = "qbittorrent.service"; };
-   serviceConfig = {
-     User = "media";
-     Group = "media";
-     ExecStart = "${pkgs.systemd}/lib/systemd/systemd-socket-proxyd --exit-idle-time=5min 127.0.0.1:8080";
-     PrivateNetwork = "yes";
-   };
-  };
+  # systemd.services."proxy-to-qbittorrent" = {
+  #  enable = true;
+  #  description = "Proxy to Qbittorrent Daemon in Wireguard Namespace";
+  #  requires = [ "qbittorrent.service" "proxy-to-qbittorrent.socket" ];
+  #  after = [ "qbittorrent.service" ".proxy-to-qbittorrent.socket" ];
+  #  unitConfig = { JoinsNamespaceOf = "qbittorrent.service"; };
+  #  serviceConfig = {
+  #    User = "media";
+  #    Group = "media";
+  #    ExecStart = "${pkgs.systemd}/lib/systemd/systemd-socket-proxyd --exit-idle-time=5min 127.0.0.1:8080";
+  #    PrivateNetwork = "yes";
+  #  };
+  # };
 
   systemd.services."proxy-to-radarr" = {
    enable = true;
