@@ -7,6 +7,7 @@
      # ../../modules/minecraft_server.nix
       ../../modules/caddy.nix
      # ../../modules/zram.nix
+      ../../modules/docker.nix
     ];
 
 
@@ -61,7 +62,7 @@
   users.users.calle = {
     isNormalUser = true;
     description = "calle";
-    hashedPassword = "$6$zz5.EZMDjqHoXaeU$2rxBO2RzliIic7E1Rxau/3FudYlm5c1x3LId1KB29LOJZ/T6pDy6Ta.s6jZbduIOhfOu1VWR.eelDngVvSGke0";
+    hashedPassword = "$6$8oHryG9/cFmb5L2.$fPpF/rPin4q1OnZP9YTYVxDokdhO5G1kv55tdfQyZPkdT8wURc4Do1pLs3bzIJ.AX4jDY.1yanIatIIeZ72xg1";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [];
   };
