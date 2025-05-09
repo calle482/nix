@@ -138,7 +138,7 @@
 
   # Bind services to wireguard
   systemd.services = {
-    qbittorrent = {
+   # qbittorrent = {
    #   bindsTo = [ "netns@wg.service" ];
    #   requires = [ "network-online.target" "wg.service" ];
    #   serviceConfig.NetworkNamespacePath = [ "/var/run/netns/wg" ];
