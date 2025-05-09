@@ -6,8 +6,9 @@
       ../../modules/media.nix
      # ../../modules/minecraft_server.nix
       ../../modules/caddy.nix
-     # ../../modules/zram.nix
+      ../../modules/zram.nix
       ../../modules/docker.nix
+      ../../modules/nvidia.nix
     ];
 
 

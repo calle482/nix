@@ -81,14 +81,14 @@
   #  openFirewall =  true;
   #};
 
-  # services.qbittorrent = {
-  #   enable = true;
-  #   openFirewall = true;
-  #   user = "media";
-  #   group = "media";
-  #   torrentingPort = 1234;
-  #   profileDir = "/apps/qbittorrent";
-  # };
+ services.qbittorrent = {
+   enable = true;
+   openFirewall = true;
+   user = "media";
+   group = "media";
+   torrentingPort = 55536;
+   profileDir = "/apps/qbittorrent";
+ };
 
 
   # Set DNS server
@@ -118,7 +118,7 @@
      ExecStart = with pkgs; writers.writeBash "wg-up" ''
        ${iproute2}/bin/ip link add wg0 type wireguard
        ${iproute2}/bin/ip link set wg0 netns wg
-       ${iproute2}/bin/ip -n wg address add 10.139.184.160/32 dev wg0
+       ${iproute2}/bin/ip -n wg address add 10.189.100.44/32 dev wg0
        ${pkgs.coreutils}/bin/mkdir -p /etc/netns/wg
        ${iproute2}/bin/ip netns exec wg ${bash}/bin/bash -c 'echo "nameserver 10.128.0.1" > /etc/netns/wg/resolv.conf'
        ${iproute2}/bin/ip netns exec wg \
@@ -138,12 +138,12 @@
 
   # Bind services to wireguard
   systemd.services = {
-   # qbittorrent = {
-   #   bindsTo = [ "netns@wg.service" ];
-   #   requires = [ "network-online.target" "wg.service" ];
-   #   serviceConfig.NetworkNamespacePath = [ "/var/run/netns/wg" ];
-   # };
-    radarr = {
+   qbittorrent = {
+     bindsTo = [ "netns@wg.service" ];
+     requires = [ "network-online.target" "wg.service" ];
+     serviceConfig.NetworkNamespacePath = [ "/var/run/netns/wg" ];
+   };
+   radarr = {
       bindsTo = [ "netns@wg.service" ];
       requires = [ "network-online.target" "wg.service" ];
       serviceConfig.NetworkNamespacePath = [ "/var/run/netns/wg" ];
@@ -161,12 +161,12 @@
   };
 
   # allowing qbittorrent & arr web access in wg namespace, a socket is necesarry
-  # systemd.sockets."proxy-to-qbittorrent" = {
-  #  enable = true;
-  #  description = "Socket for Proxy to Qbittorrent Daemon";
-  #  listenStreams = [ "8080"];
-  #  wantedBy = [ "sockets.target" ];
-  # };
+  systemd.sockets."proxy-to-qbittorrent" = {
+   enable = true;
+   description = "Socket for Proxy to Qbittorrent Daemon";
+   listenStreams = [ "8080"];
+   wantedBy = [ "sockets.target" ];
+  };
 
   systemd.sockets."proxy-to-radarr" = {
    enable = true;
@@ -191,19 +191,19 @@
 
 
   # creating proxy service on socket, which forwards the same port from the root namespace to the wg namespace
-  # systemd.services."proxy-to-qbittorrent" = {
-  #  enable = true;
-  #  description = "Proxy to Qbittorrent Daemon in Wireguard Namespace";
-  #  requires = [ "qbittorrent.service" "proxy-to-qbittorrent.socket" ];
-  #  after = [ "qbittorrent.service" ".proxy-to-qbittorrent.socket" ];
-  #  unitConfig = { JoinsNamespaceOf = "qbittorrent.service"; };
-  #  serviceConfig = {
-  #    User = "media";
-  #    Group = "media";
-  #    ExecStart = "${pkgs.systemd}/lib/systemd/systemd-socket-proxyd --exit-idle-time=5min 127.0.0.1:8080";
-  #    PrivateNetwork = "yes";
-  #  };
-  # };
+  systemd.services."proxy-to-qbittorrent" = {
+   enable = true;
+   description = "Proxy to Qbittorrent Daemon in Wireguard Namespace";
+   requires = [ "qbittorrent.service" "proxy-to-qbittorrent.socket" ];
+   after = [ "qbittorrent.service" ".proxy-to-qbittorrent.socket" ];
+   unitConfig = { JoinsNamespaceOf = "qbittorrent.service"; };
+   serviceConfig = {
+     User = "media";
+     Group = "media";
+     ExecStart = "${pkgs.systemd}/lib/systemd/systemd-socket-proxyd --exit-idle-time=5min 127.0.0.1:8080";
+     PrivateNetwork = "yes";
+   };
+  };
 
   systemd.services."proxy-to-radarr" = {
    enable = true;
@@ -264,21 +264,22 @@
   serviceConfig = {
     PrivateTmp = true;
     NoNewPrivileges = true;
-    ProtectSystem = "strict";
+    ProtectSystem = "full";
     RestrictNamespaces = ["~user" "~pid" "~uts" "~cgroup" "~ipc" "~net" "~mnt"];
+    #RestrictNamespaces = true;
     ProtectHostname = true;
     LockPersonality = true;
     ProtectKernelTunables = true;
     ProtectKernelModules = true;
     ProtectControlGroups = true;
-    PrivateDevices = true;
+    #PrivateDevices = true;
     RestrictSUIDSGID = true;
     #ProtectClock = true;
     PrivateUsers = true;
     ProtectHome = true;
     #SystemCallFilter = [ "~@clock" "~@cpu-emulation" "~@debug" "~@module" "~@mount" "~@obsolete" "~@privileged" "~@raw-io" "~@reboot" "~@resources" "~@swap"];
     SystemCallFilter = [ "~@clock" "~@cpu-emulation" "~@debug" "~@mount" "~@obsolete" "~@obsolete" "~@privileged" "~@raw-io" "~@reboot" "~@swap"];
-    ReadWritePaths = ["/apps/radarr" "/mnt/18tb/jellyfin/Movies"];
+    #ReadWritePaths = ["/apps/radarr"];
     ProtectKernelLogs = true;
     RestrictRealtime = true;
     SystemCallArchitectures = "native";
@@ -294,19 +295,19 @@
   serviceConfig = {
     PrivateTmp = true;
     NoNewPrivileges = true;
-    ProtectSystem = "strict";
+    ProtectSystem = "full";
     RestrictNamespaces = ["~user" "~pid" "~uts" "~cgroup" "~ipc" "~net" "~mnt"];
     ProtectHostname = true;
     LockPersonality = true;
     ProtectKernelTunables = true;
     ProtectKernelModules = true;
     ProtectControlGroups = true;
-    PrivateDevices = true;
+    #PrivateDevices = true;
     RestrictSUIDSGID = true;
     PrivateUsers = true;
     ProtectHome = true;
     SystemCallFilter = [ "~@clock" "~@cpu-emulation" "~@debug" "~@mount" "~@obsolete" "~@obsolete" "~@privileged" "~@raw-io" "~@reboot" "~@swap"];
-    ReadWritePaths = ["/apps/sonarr" "/mnt/18tb/jellyfin/Shows"];
+    #ReadWritePaths = ["/apps/sonarr"];
     ProtectKernelLogs = true;
     RestrictRealtime = true;
     SystemCallArchitectures = "native";
