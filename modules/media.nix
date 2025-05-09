@@ -34,10 +34,14 @@
     openFirewall = true;
     user = "media";
     group = "media";
-    logDir = "/apps/jellyfin/logs";
-    cacheDir = "/tmp/jellyfin_cache";
-    dataDir = "/apps/jellyfin/data";
-    configDir = "/apps/jellyfin/config";
+    #logDir = "/apps/jellyfin/logs";
+    #cacheDir = "/apps/jellyfin/cache";
+    #dataDir = "/apps/jellyfin/data";
+    #configDir = "/apps/jellyfin/config";
+    logDir = "/var/log/jellyfin";
+    cacheDir = "/var/cache/jellyfin";
+    dataDir = "/var/lib/jellyfin";
+    configDir = "/etc/jellyfin";
   };
 
   services.radarr = {
@@ -249,6 +253,10 @@
     "/apps/radarr"
     "/apps/sonarr"
     "/apps/qbittorrent"
+    "/var/cache/jellyfin"
+    "/etc/jellyfin"
+    "/var/lib/jellyfin"
+    "/var/log/jellyfin"
   ];
 
   # Hardening

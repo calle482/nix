@@ -3,9 +3,9 @@
 
   imports = [
       ./hardware-configuration.nix
-    #  ../../modules/media.nix
+      ../../modules/media.nix
      # ../../modules/minecraft_server.nix
-     # ../../modules/caddy.nix
+      ../../modules/caddy.nix
      # ../../modules/zram.nix
     ];
 
@@ -79,6 +79,7 @@
     htop
     sops
     lynis
+    cryptsetup
   ];
 
   # Enable the OpenSSH daemon.
@@ -102,7 +103,9 @@
       "/var/lib/bluetooth"
       "/var/lib/nixos"
       "/var/lib/systemd/coredump"
+      "/etc/luks-keys"
       "/etc/NetworkManager/system-connections"
+      "/mnt"
       #"/run/secrets.d"
       { directory = "/var/lib/colord"; user = "colord"; group = "colord"; mode = "u=rwx,g=rx,o="; }
     ];
@@ -129,5 +132,29 @@
     dates = "Mon *-*-* 03:00:00"; # Every monday at 03:00
     allowReboot = true;
   };
+
+  # Encrypted drive
+  #boot.initrd.systemd.enable = true;
+  #boot.initrd.luks.devices."crypt18TB-HDD" = {
+  #  device = "/dev/disk/by-uuid/f410dd27-a4af-4b34-b48c-c05f6f3f8ca6";
+  #  keyFileSize = 8192;
+  #  keyFile = "/etc/luks-keys/18TB-HDD_key";
+  #};
+
+  #fileSystems."/mnt/18tb" = {
+  #  device = "/dev/mapper/crypt18TB-HDD";
+  #  fsType = "ext4";
+  #  options = [ "nofail" ];
+  #};
+
+environment.etc."crypttab".text = ''
+  crypt24TB-HDD /dev/disk/by-uuid/f410dd27-a4af-4b34-b48c-c05f6f3f8ca6 /etc/luks-keys/24TB-HDD-01_key luks
+'';
+
+fileSystems."/mnt/18tb" = {
+  device = "/dev/mapper/crypt24TB-HDD";
+  fsType = "ext4";
+  options = [ "nofail" ];
+};
 
 }
