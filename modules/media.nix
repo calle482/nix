@@ -278,7 +278,7 @@
     ProtectHome = true;
     #SystemCallFilter = [ "~@clock" "~@cpu-emulation" "~@debug" "~@module" "~@mount" "~@obsolete" "~@privileged" "~@raw-io" "~@reboot" "~@resources" "~@swap"];
     SystemCallFilter = [ "~@clock" "~@cpu-emulation" "~@debug" "~@mount" "~@obsolete" "~@obsolete" "~@privileged" "~@raw-io" "~@reboot" "~@swap"];
-    ReadWritePaths = ["/apps/radarr"];
+    ReadWritePaths = ["/apps/radarr" "/mnt/18tb/jellyfin/Movies"];
     ProtectKernelLogs = true;
     RestrictRealtime = true;
     SystemCallArchitectures = "native";
@@ -306,7 +306,7 @@
     PrivateUsers = true;
     ProtectHome = true;
     SystemCallFilter = [ "~@clock" "~@cpu-emulation" "~@debug" "~@mount" "~@obsolete" "~@obsolete" "~@privileged" "~@raw-io" "~@reboot" "~@swap"];
-    ReadWritePaths = ["/apps/sonarr"];
+    ReadWritePaths = ["/apps/sonarr" "/mnt/18tb/jellyfin/Shows"];
     ProtectKernelLogs = true;
     RestrictRealtime = true;
     SystemCallArchitectures = "native";
