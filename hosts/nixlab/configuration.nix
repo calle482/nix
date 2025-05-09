@@ -63,7 +63,7 @@
     isNormalUser = true;
     description = "calle";
     hashedPassword = "$6$8oHryG9/cFmb5L2.$fPpF/rPin4q1OnZP9YTYVxDokdhO5G1kv55tdfQyZPkdT8wURc4Do1pLs3bzIJ.AX4jDY.1yanIatIIeZ72xg1";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [];
   };
 
@@ -150,10 +150,17 @@
 
 environment.etc."crypttab".text = ''
   crypt24TB-HDD /dev/disk/by-uuid/f410dd27-a4af-4b34-b48c-c05f6f3f8ca6 /etc/luks-keys/24TB-HDD-01_key luks
+  crypt4TB-HDD /dev/disk/by-uuid/28b6369b-1906-4aea-bf93-078d1542dc90 /etc/luks-keys/4TB-HDD_key luks
 '';
 
 fileSystems."/mnt/18tb" = {
   device = "/dev/mapper/crypt24TB-HDD";
+  fsType = "ext4";
+  options = [ "nofail" ];
+};
+
+fileSystems."/mnt/4tb" = {
+  device = "/dev/mapper/crypt4TB-HDD";
   fsType = "ext4";
   options = [ "nofail" ];
 };
