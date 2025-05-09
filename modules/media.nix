@@ -257,6 +257,7 @@
     "/etc/jellyfin"
     "/var/lib/jellyfin"
     "/var/log/jellyfin"
+    "/var/lib/prowlarr"
   ];
 
   # Hardening
