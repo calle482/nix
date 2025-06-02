@@ -9,6 +9,7 @@
       ../../modules/zram.nix
       ../../modules/docker.nix
       ../../modules/nvidia.nix
+      ../../modules/samba.nix
     ];
 
 
