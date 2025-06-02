@@ -3,12 +3,12 @@
   description = "My first flake";
 
   inputs = {
-      nixpkgs.url= "github:NixOS/nixpkgs/nixos-24.11";
+      nixpkgs.url= "github:NixOS/nixpkgs/nixos-25.05";
       nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
       nix-minecraft.url = "github:Infinidoge/nix-minecraft";
       impermanence.url = "github:nix-community/impermanence";
       sops-nix.url = "github:Mic92/sops-nix";
-      home-manager.url = "github:nix-community/home-manager/release-24.11";
+      home-manager.url = "github:nix-community/home-manager/release-25.05";
       home-manager.inputs.nixpkgs.follows = "nixpkgs";
       home-manager-unstable.url= "github:nix-community/home-manager";
       home-manager-unstable.inputs.nixpkgs.follows = "nixpkgs-unstable";
