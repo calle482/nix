@@ -26,6 +26,7 @@
     pkgs.qbittorrent-nox
     pkgs.wireguard-tools
     pkgs.recyclarr
+    pkgs.unrar
   ];
 
 
