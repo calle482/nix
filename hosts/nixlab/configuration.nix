@@ -8,7 +8,7 @@
       ../../modules/caddy.nix
       ../../modules/zram.nix
       ../../modules/docker.nix
-      ../../modules/nvidia.nix
+    # ../../modules/nvidia.nix
       ../../modules/samba.nix
     ];
 
