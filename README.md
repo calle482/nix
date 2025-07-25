@@ -115,8 +115,10 @@ sudo nixos-rebuild switch --flake .
 
 
 # Setup sops-nix age key
+```
 sudo nix run nixpkgs#ssh-to-age -- -private-key -i /home/calle/.ssh/server_key > ~/keys.txt
 mkdir -p ~/.config/sops/age
 mv keys.txt ~/.config/sops/age/keys.txt
 sudo nix shell nixpkgs#age -c age-keygen -y ./keys.txt
 age1qf92uhsvu45cvf93k0mmaefmk95v5ev6nq46szpz27lh2x4x6qmqez5m5m
+```
