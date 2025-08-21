@@ -6,7 +6,7 @@
 
   programs.home-manager.enable = true;
 
-  home.stateVersion = "24.11"; # This should not be changed, keep at the version which the system was installed on
+  home.stateVersion = "25.11"; # This should not be changed, keep at the version which the system was installed on
 
   #programs.home-manager.backupFileExtension = "backup";
 
