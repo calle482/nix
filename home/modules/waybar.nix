@@ -139,9 +139,10 @@
       settings = [{
         "layer" = "top";
         "position" = "top";
-        #"output" = [
-        #  "Virtual-1"
-        #];
+        "output" = [
+          "HDMI-A-1"
+	        "DP-2"
+        ];
         modules-left = [
           "hyprland/workspaces"
         ];

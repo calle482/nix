@@ -15,6 +15,16 @@
   };
 
 
+    # Brunmagi musstorlek
+    programs.bash = {
+      enable = true;
+
+      initExtra = ''
+        # include .profile if it exists
+        [[ -f ~/.profile ]] && . ~/.profile
+      '';
+    };
+
   # sops
   sops.defaultSopsFile = ../secrets/secrets.yaml;
   sops.defaultSopsFormat = "yaml";

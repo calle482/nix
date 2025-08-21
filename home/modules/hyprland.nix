@@ -68,10 +68,9 @@ in
 
     # Monitor
     monitor = [
-      "Virtual-1, 1920x1080, 0x0, 1"
-     # "DP-1, 1920x1080, 0x0, 1"
-     # "DP-2 3840X2160, 1920x0, 1.5"
-     # "DP-3 1920x1080, 5760x0, 1"
+      "HDMI-A-1, 1920x1080@144.00Hz, 0x0, 1"
+      "DP-1, 3840x2160@239.99Hz, 1920x0, 1.5"
+      "DP-2, 1920x1080@144.00Hz, 4480x0, 1"
     ];
 
     # Keyboard
@@ -122,7 +121,7 @@ in
       "$mod SHIFT, E, exit"
       "$mod, L, exec, ${pkgs.swaylock}/bin/swaylock"
       "$mod, F, fullscreen"
-      "$mod, X, movecurrentworkspacetomonitor, -1"
+      "$mod, X, movecurrentworkspacetomonitor, +1"
 
       # Resize windows
       "$mod Control_L, left, resizeactive, -10 0"
@@ -219,6 +218,12 @@ in
     windowrule = [
       "immediate, class:^(cs2)$"
       "immediate, class:(overwatch)$"
+      "immediate, class:(wowclassic)"
+      # Smart Gaps
+      "bordersize 0, floating:0, onworkspace:w[tv1]"
+      "rounding 0, floating:0, onworkspace:w[tv1]"
+      "bordersize 0, floating:0, onworkspace:f[1]"
+      "rounding 0, floating:0, onworkspace:f[1]"
     ];
 
     # Set solid black background
@@ -227,16 +232,15 @@ in
       background_color = "0x000000";
     };
 
-    # Brunmagi musstorlek
-    programs.bash = {
-      enable = true;
-
-      initExtra = ''
-        # include .profile if it exists
-        [[ -f ~/.profile ]] && . ~/.profile
-      '';
+    xwayland = {
+      force_zero_scaling = true;
     };
 
+    # Smart Gaps
+    workspace = [
+      "w[tv1], gapsout:0, gapsin:0"
+      "f[1], gapsout:0, gapsin:0"
+    ];
 
 };
 

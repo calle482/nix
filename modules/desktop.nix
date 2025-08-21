@@ -3,7 +3,7 @@
 {
 
     environment.systemPackages = with pkgs; [
-      #discord
+      discord
       vesktop
       spotify
       xfce.thunar
