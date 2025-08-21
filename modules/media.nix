@@ -3,10 +3,10 @@
 {
 
 
-  imports =
-    [
-      ./services/qbittorrent.nix
-    ];
+  #imports =
+  #  [
+  #    ./services/qbittorrent.nix
+  #  ];
 
   # Create media group
   users.groups.media = {};
