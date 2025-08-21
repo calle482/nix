@@ -227,6 +227,16 @@ in
       background_color = "0x000000";
     };
 
+    # Brunmagi musstorlek
+    programs.bash = {
+      enable = true;
+
+      initExtra = ''
+        # include .profile if it exists
+        [[ -f ~/.profile ]] && . ~/.profile
+      '';
+    };
+
 
 };
 
