@@ -119,7 +119,7 @@
      ExecStart = with pkgs; writers.writeBash "wg-up" ''
        ${iproute2}/bin/ip link add wg0 type wireguard
        ${iproute2}/bin/ip link set wg0 netns wg
-       ${iproute2}/bin/ip -n wg address add 10.189.100.44/32 dev wg0
+       ${iproute2}/bin/ip -n wg address add 10.157.97.192/32 dev wg0
        ${pkgs.coreutils}/bin/mkdir -p /etc/netns/wg
        ${iproute2}/bin/ip netns exec wg ${bash}/bin/bash -c 'echo "nameserver 10.128.0.1" > /etc/netns/wg/resolv.conf'
        ${iproute2}/bin/ip netns exec wg \
