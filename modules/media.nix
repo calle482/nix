@@ -43,8 +43,6 @@
     cacheDir = "/var/cache/jellyfin";
     dataDir = "/var/lib/jellyfin";
     configDir = "/etc/jellyfin";
-    requires = [ "mnt-18tb.mount " ];
-    after = [ "mnt-18tb.mount" ];
   };
 
   services.radarr = {
@@ -53,8 +51,6 @@
     user = "media";
     group = "media";
     dataDir = "/apps/radarr/data";
-    requires = [ "mnt-18tb.mount " ];
-    after = [ "mnt-18tb.mount" ];
 };
 
   services.sonarr = {
@@ -63,15 +59,11 @@
     user = "media";
     group = "media";
     dataDir = "/apps/sonarr/data";
-    requires = [ "mnt-18tb.mount " ];
-    after = [ "mnt-18tb.mount" ];
   };
 
   services.prowlarr = {
     enable = true;
     openFirewall = true;
-    requires = [ "mnt-18tb.mount " ];
-    after = [ "mnt-18tb.mount" ];
   };
 
   services.bazarr = {
@@ -79,8 +71,6 @@
     openFirewall = true;
     user = "media";
     group = "media";
-    requires = [ "mnt-18tb.mount " ];
-    after = [ "mnt-18tb.mount" ];
   };
 
 #  services.recyclarr = {
@@ -99,8 +89,6 @@
    group = "media";
    torrentingPort = 55536;
    profileDir = "/apps/qbittorrent";
-   requires = [ "mnt-18tb.mount " ];
-   after = [ "mnt-18tb.mount" ];
  };
 
 
@@ -149,27 +137,35 @@
    };
   };
 
-  # Bind services to wireguard
+  # Bind services to wireguard and require disk to be mounted before starting
   systemd.services = {
    qbittorrent = {
      bindsTo = [ "netns@wg.service" ];
-     requires = [ "network-online.target" "wg.service" ];
+     requires = [ "network-online.target" "wg.service" "mnt-18tb.mount" ];
      serviceConfig.NetworkNamespacePath = [ "/var/run/netns/wg" ];
+     after = [ "mnt-18tb.mount" ];
    };
    radarr = {
       bindsTo = [ "netns@wg.service" ];
-      requires = [ "network-online.target" "wg.service" ];
+      requires = [ "network-online.target" "wg.service" "mnt-18tb.mount" ];
       serviceConfig.NetworkNamespacePath = [ "/var/run/netns/wg" ];
+      after = [ "mnt-18tb.mount" ];
     };
     sonarr = {
       bindsTo = [ "netns@wg.service" ];
-      requires = [ "network-online.target" "wg.service" ];
+      requires = [ "network-online.target" "wg.service" "mnt-18tb.mount" ];
       serviceConfig.NetworkNamespacePath = [ "/var/run/netns/wg" ];
+      after = [ "mnt-18tb.mount" ];
     };
     prowlarr = {
       bindsTo = [ "netns@wg.service" ];
-      requires = [ "network-online.target" "wg.service" ];
+      requires = [ "network-online.target" "wg.service" "mnt-18tb.mount" ];
       serviceConfig.NetworkNamespacePath = [ "/var/run/netns/wg" ];
+      after = [ "mnt-18tb.mount" ];
+    };
+    bazarr = {
+      requires = [ "mnt-18tb.mount" ];
+      after = [ "mnt-18tb.mount" ];
     };
   };
 
