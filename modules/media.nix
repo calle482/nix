@@ -43,8 +43,8 @@
     cacheDir = "/var/cache/jellyfin";
     dataDir = "/var/lib/jellyfin";
     configDir = "/etc/jellyfin";
-    requires = "mnt-18tb.mount ";
-    after = "mnt-18tb.mount";
+    requires = [ "mnt-18tb.mount " ];
+    after = [ "mnt-18tb.mount" ];
   };
 
   services.radarr = {
@@ -53,8 +53,8 @@
     user = "media";
     group = "media";
     dataDir = "/apps/radarr/data";
-    requires = "mnt-18tb.mount ";
-    after = "mnt-18tb.mount";
+    requires = [ "mnt-18tb.mount " ];
+    after = [ "mnt-18tb.mount" ];
 };
 
   services.sonarr = {
@@ -63,15 +63,15 @@
     user = "media";
     group = "media";
     dataDir = "/apps/sonarr/data";
-    requires = "mnt-18tb.mount ";
-    after = "mnt-18tb.mount";
+    requires = [ "mnt-18tb.mount " ];
+    after = [ "mnt-18tb.mount" ];
   };
 
   services.prowlarr = {
     enable = true;
     openFirewall = true;
-    requires = "mnt-18tb.mount ";
-    after = "mnt-18tb.mount";
+    requires = [ "mnt-18tb.mount " ];
+    after = [ "mnt-18tb.mount" ];
   };
 
   services.bazarr = {
@@ -79,8 +79,8 @@
     openFirewall = true;
     user = "media";
     group = "media";
-    requires = "mnt-18tb.mount ";
-    after = "mnt-18tb.mount";
+    requires = [ "mnt-18tb.mount " ];
+    after = [ "mnt-18tb.mount" ];
   };
 
 #  services.recyclarr = {
@@ -99,8 +99,8 @@
    group = "media";
    torrentingPort = 55536;
    profileDir = "/apps/qbittorrent";
-   requires = "mnt-18tb.mount ";
-   after = "mnt-18tb.mount";
+   requires = [ "mnt-18tb.mount " ];
+   after = [ "mnt-18tb.mount" ];
  };
 
 
