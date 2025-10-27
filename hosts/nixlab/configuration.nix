@@ -8,7 +8,7 @@
       ../../modules/caddy.nix
       ../../modules/zram.nix
       ../../modules/docker.nix
-    # ../../modules/nvidia.nix
+      ../../modules/nvidia.nix
       ../../modules/samba.nix
     ];
 
@@ -18,6 +18,11 @@
   nix.gc.automatic = true;
   nix.gc.dates = "daily";
   nix.gc.options = "--delete-older-than 365d";
+
+  # CPU Governor
+  powerManagement = {
+    cpuFreqGovernor = "performance";
+  };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
