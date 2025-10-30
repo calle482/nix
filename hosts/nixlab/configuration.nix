@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, pkgs-unstable, lib, ... }:
 {
 
   imports = [
@@ -7,17 +7,22 @@
      # ../../modules/minecraft_server.nix
       ../../modules/caddy.nix
       ../../modules/zram.nix
-      ../../modules/docker.nix
+      #../../modules/docker.nix
       ../../modules/nvidia.nix
-      ../../modules/samba.nix
+     # ../../modules/samba.nix
     ];
 
+  # Enable crashdump
+  boot.crashDump.enable = true;
+
+  # Use latest kernel
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Cleanup
-  nix.settings.auto-optimise-store = true;
-  nix.gc.automatic = true;
-  nix.gc.dates = "daily";
-  nix.gc.options = "--delete-older-than 365d";
+  #nix.settings.auto-optimise-store = true;
+  #nix.gc.automatic = true;
+  #nix.gc.dates = "daily";
+  #nix.gc.options = "--delete-older-than 365d";
 
   # CPU Governor
   powerManagement = {
