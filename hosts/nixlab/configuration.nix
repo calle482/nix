@@ -4,12 +4,12 @@
   imports = [
       ./hardware-configuration.nix
       ../../modules/media.nix
-     # ../../modules/minecraft_server.nix
+      ../../modules/minecraft_server.nix
       ../../modules/caddy.nix
       ../../modules/zram.nix
       ../../modules/docker.nix
       ../../modules/nvidia.nix
-     # ../../modules/samba.nix
+      ../../modules/samba.nix
     ];
 
   # Enable crashdump
