@@ -7,7 +7,7 @@
      # ../../modules/minecraft_server.nix
       ../../modules/caddy.nix
       ../../modules/zram.nix
-      #../../modules/docker.nix
+      ../../modules/docker.nix
       ../../modules/nvidia.nix
      # ../../modules/samba.nix
     ];
@@ -17,6 +17,9 @@
 
   # Use latest kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  # AMD + Linux = :(
+  boot.kernelParams = [ "processor.max_cstate=5" ];
 
   # Cleanup
   #nix.settings.auto-optimise-store = true;
